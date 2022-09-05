@@ -16,17 +16,16 @@ menu:
     - name: Home
       url: ""
       weight: 1
-    - name: About
-      url: "about/"
+    - name: Schedule
+      url: "schedule/"
       weight: 2
-    - name: Categories
-      url: "categories/"
+    - name: Homework
+      url: "homework/"
       weight: 3
-    - name: Tags
-      url: "tags/"
+    - name: Syllabus
+      url: "yllabus/"
       weight: 4
-    - name: Subscribe
-      url: "index.xml"
+
 
 params:
   description: "A website built through Hugo and blogdown."

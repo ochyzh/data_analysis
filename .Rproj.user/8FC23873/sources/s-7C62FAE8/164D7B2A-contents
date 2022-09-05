@@ -1,0 +1,39 @@
+baseurl = "https://pol478.netlify.app/" 
+disqusShortname = ""
+googleAnalytics = "UA-177408185-1"
+languageCode = "en-us"
+title = "POL 478H1"
+theme = "hugo-xmin"
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$"]
+footnotereturnlinkcontents = "↩"
+
+[permalinks]
+    post = "/post/:year/:month/:day/:slug/"
+    note = "/note/:year/:month/:day/:slug/"
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+[[menu.main]] 
+    name = "Schedule"
+    url = "/schedule/"
+    weight = 2
+[[menu.main]]
+    name = "Homework"
+    url = "/homework/"
+    weight = 3
+[[menu.main]]
+    name = "Syllabus"
+    url = "/syllabus/"
+    weight = 4
+    
+
+[params]
+    description = "A website built through Hugo and blogdown."
+    footer = "&copy; [Olga Chyzh](https://www.olgachyzh.com) | [Github](https://github.com/ochyzh) | [Twitter](https://twitter.com/olga_chyzh)"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
