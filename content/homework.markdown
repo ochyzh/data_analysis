@@ -7,7 +7,7 @@ title: Homework Assignments
     <thead>
       <tr>
         <th>Due Date</th>
-        <th>Homework</th>
+        <th>Assignment</th>
        </tr>
     </thead>
     <tbody>
@@ -15,7 +15,7 @@ title: Homework Assignments
         <td>Sep 30</td>
         <td>
           <dl>
-          <dd><a href="./materials/homework/assignment1.html" target=_blank>Homework 1</a>
+          <dd><a href="../materials/homework/assignment1.html" target=_blank>Assignment 1</a>
           </dd>
           </dl>
         </td>
@@ -24,20 +24,19 @@ title: Homework Assignments
         <td>Oct 28</td>
         <td>
           <dl>
-          <dd><a href="../materials/homeworks/homework02_alt.Rmd" target=_blank>Homework 2</a>
+          <dd><a href="../homework/homework02_alt.Rmd" target=_blank>Assignment 2</a>
           </dd>
           </dl>
         </td>
        </tr>
        <tr>
-        <td>Dec 5</td>
+        <td>Dec 7</td>
         <td>
           <dl>
-          <dd><a href="../materials/homeworks/homework03_alt.Rmd" target=_blank>Homework 3</a>
+          <dd><a href="../homework/homework03_alt.Rmd" target=_blank>Assignment 3</a>
           </dd>
           </dl>
         </td>
-       </tr>
        </tr>
       </tbody>
   </table>
