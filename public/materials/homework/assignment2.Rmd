@@ -1,5 +1,5 @@
 ---
-title: "POL 304 - Assignment #1: Indiscriminate Violence and Insurgent Attacks"
+title: "POL 304 - Assignment #2: Research Design"
 author: ""
 date: ""
 output: html_document
