@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>POL 304: Using Data to Understand Politics and Society</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Olga Chyzh [www.olgachyzh.com]" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# POL 304: Using Data to Understand Politics and Society
+]
+.subtitle[
+## Causality II
+]
+.author[
+### Olga Chyzh [www.olgachyzh.com]
+]
+
+---
+
+
+
+
+## What You Did in Preparation for Today
+
+- Chapter 2 Sections 2.5
+
+---
+## Today's Agenda
+
+- Review randomized controlled trials:
+
+    - Role of randomization
+    
+    - Social pressure experiment (optional)
+
+- Review Sections 2.5 and 2.6 of QSS:
+
+    - Observational studies
+    
+    - Confounding bias
+    
+    - Cross-section, before-and-after, and difference-in-differences designs
+
+    - Minimum wage study
+    
+---
+##  Review of Randomized Control Trials
+
+- Fundamental problem of causal inference:
+
+    - Comparison between factual and counterfactual
+    
+    - Counterfactuals are not observed
+
+- Solution: Randomized controlled trials (RCTs)
+
+    - Treatment and control groups identical on average
+
+    - Similar in all (observed and unobserved) characteristics
+
+    - Difference in average outcome between the two groups, `\(\bar{Y}(1)-\bar{Y}(0)\)`, is an estimate of 
+
+`$$\text{Sample Average Treatment Effect (SATE)}=\\\frac{1}{n}\sum\limits_{i=1}^{n}\{Y_i(1)-Y_i(0)\}$$`
+---
+
+## Examples of RCTs
+
+- Causal effect of safe/locked box on health savings
+
+- Causal effect of race on employment prospect
+
+- Causal effect of naming-and-shaming on turnout
+---
+
+## Social Pressure Experiment [Optional]
+
+- August 2006 Primary Statewide Election in Michigan&lt;sup&gt;1&lt;/sup&gt;
+
+- Send postcards with different (randomly assigned) messages
+
+1. no message (control group)
+
+2. civic duty message
+
+3. “you are being studied” message (Hawthorne effect)
+
+4. neighborhood social pressure message
+
+.footnote[
+&lt;sup&gt;1&lt;/sup&gt; Gerber, Alan S., Donald P. Green, and Christopher W. Larimer. 2008. "Social pressure and voter turnout: Evidence from a large-scale field experiment." *American Political Science Review* 102 (1): 33--48.
+]
+
+---
+&lt;img src="images/naming-shaming.png" width="1000px" style="display: block; margin: auto;" /&gt;
+
+---
+## Analysis
+
+.center[Turnout by Group:]
+
+| Civic Duty|   Control| Hawthorne| Neighbors|
+|----------:|---------:|---------:|---------:|
+|  0.3145377| 0.2966383| 0.3223746| 0.3779482|
+
+.center[SATE for each group:]
+
+| Civic Duty| Hawthorne| Neighbors|
+|----------:|---------:|---------:|
+|  0.0178993| 0.0257363| 0.0813099|
+
+- Randomization balances covariates across groups:
+
+.center[Primary 2004 for each group:]
+
+| Civic Duty|   Control| Hawthorne| Neighbors|
+|----------:|---------:|---------:|---------:|
+|  0.3994453| 0.4003388|   0.40323| 0.4066647|
+
+---
+
+## Observational Studies
+
+- Often, we can’t randomize treatment for ethical and logistical reasons:
+
+    - e.g., smoking and lung cancer
+    
+- Observational studies: naturally assigned treatment
+
+- Better external validity for generalization beyond experiment
+
+- Weaker internal validity:
+    
+    - pre-treatment variables may differ between treatment and control groups
+    
+    - confounding bias due to these differences
+
+    - selection bias from self-selection into treatment
+
+    - statistical control needed
+
+    - unobserved confounding poses a threat
+
+---
+## Confounding
+
+&lt;img src="images/confounding.png" width="300px" style="display: block; margin: auto;" /&gt;
+
+- Key assumption “Unconfoundedness”: treatment and control groups comparable with respect to everything other than treatment
+
+- How can we find a good comparison group?
+
+---
+## Asthma in Children [Optional]
+
+- New evidence for the role of microbes from farm animals in dust
+
+- Comparison of Amish and Hutterites:
+
+    - similar genetic backgrounds, large families, and a simple communal life style
+
+    - diets are similar, little exposure to tobacco or pollution, both groups prohibit indoor pets, meticulously clean homes
+
+- Rates of asthma in children: 2–4% (Amish) vs. 15–20% (Hutterites)
+
+- Findings:
+
+    - Amish do not use electricity, but Hutterites do
+    
+    - Amish kids play in animal barns
+    
+    - Amish kids have better immune system, leading to less allergic reaction
+    
+    - Giving Amish house dust to mice protected them from allergens whereas Hutterites house dust did not
+
+---
+## Minimum Wage and Unemployment
+
+- How does the increase in minimum wage affect employment?
+
+- Current debate: federal minimum wage increase
+
+- Many economists believe the effect is negative
+
+    - especially for the poor
+    
+    - also for the whole economy
+    
+- Hard to randomize the minimum wage increase
+
+- Two social scientists tested this using fast food chains in NJ and PA
+
+    - In 1992, NJ minimum wage increased from $4.25 to $5.05
+
+    - Neighboring PA stays at $4.25
+
+- Observe employment in both states before and after increase
+
+- NJ and (eastern) PA are similar
+
+- Why limit to fast food chains?
+
+???
+
+Fast food chains are the most affected by min wage
+
+---
+## Did the Minimum Wage Law Affect the Wages in NJ?
+
+.center[Before]
+
+|   | &gt; 5.05| &lt; 5.05|
+|:--|------:|------:|
+|NJ |   0.09|   0.91|
+|PA |   0.06|   0.94|
+
+.center[After]
+
+|   | &gt; 5.05| &lt; 5.05|
+|:--|------:|------:|
+|NJ |  0.997|  0.003|
+|PA |  0.045|  0.955|
+---
+## Are the NJ and PA Restaurants Comparable?
+
+Average wages before the increase in minimum wage:
+
+
+|   NJ|   PA|
+|----:|----:|
+| 4.61| 4.65|
+
+Prior proportion of fulltime employment:
+
+
+|   |     x|
+|:--|-----:|
+|NJ | 0.297|
+|PA | 0.310|
+
+---
+## Cross-Section Comparison
+
+- Compare NJ and PA using the data after the increase
+
+- The treatment and control groups are assumed to be identical on average in terms of all confounders
+
+- What confounders are missing from the data?
+
+- Assumptions:
+
+    - No cross-sectional contamination
+    
+    - No cross-sectional confounders
+
+- Compute the proportion of fulltime employees after the increase:
+
+`$$\bar{Y}(1)-\bar{Y}(0)=\bar{Y}(NJ_{after})-\bar{Y}(PA_{after})=0.0481$$` 
+
+
+
+
+- Here, NJ (after the increase) is the treatment group and PA (after the increase in NJ) is the control group.
+
+- This is our estimated SATE. Why "estimated"?
+
+???
+
+The actual SATE is not observed due to the fundamental probelem of never observing the counter-factual.
+
+
+---
+## Before and After Comparison
+
+- State-specific confounders for cross-section comparison
+
+- Compare NJ before and after
+
+- Assumptions:
+
+    - No temporal contamination (treatment is exogenous)
+    
+    - No (temporal) confounders
+
+- What might be time-varying confounders?
+
+`$$\bar{Y}(1)-\bar{Y}(0)=\bar{Y}(NJ_{after})-\bar{Y}(NJ_{before})=0.0239$$`
+- Here, NJ (after the increase) is the treatment group and NJ (before the increase) is the control group.
+
+---
+## Difference-in-Difference
+
+- Key Idea: use PA before-and-after difference to figure out what would have happened in NJ without the increase
+
+- NJ before-and-after difference addresses within-state confounding
+
+- Assumptions:
+
+    - Parallel time trends (how good is our control group)
+    
+    - Treatment is exogenous (no temporal or cross-sectional contamination)
+    
+- Estimate the sample average treatment effect for the treated (SATT), NOT SATE
+
+`$$\bar{Y}(NJ_{after})-\bar{Y}(NJ_{before})-\\
+(\bar{Y}(PA_{after})-\bar{Y}(PA_{before}))=0.0616$$`
+
+---
+## Visualizing Difference-in-Difference
+&lt;img src="./images/figure2-2.png" width="600px" style="display: block; margin: auto;" /&gt;
+---
+## The Difference-in-Difference Design
+
+- A natural experiment always has the control group (observations not affected by the change) and the treatment group (observations that are affected).
+
+- Need data for two time periods (before and after the treatment).
+
+- Thus, four groups of observations: control before, treatment before, control after, treatment after
+
+- The difference between the two *before* groups helps account for the differences between the treatment and control groups that are not caused by the treatment.
+
+
+---
+## Summary of 3 Identification Strategies
+
+1. Cross-section comparison
+
+    - Compare treated units with control units after the treatment
+
+    - Assumption: the treated and control units are comparable
+
+    - Possible unit-specific confounding
+
+2. Before-and-after comparison
+
+    - Compare the same units before and after the treatment
+
+    - Assumption: no time-varying confounding
+
+3. Difference-in-Differences
+
+    - Assumption: parallel time trend
+
+    - Under this assumption, it accounts for both unit-specific and time-varying confounding
+
+- None of the approaches is best. They require different assumptions.
+---
+## Incinerator and Home Prices [Optional]
+
+Suppose we would like to study the effect of proximity to a garbage incinerator on home prices.
+
+- Propose a cross-sectional natural experiment design to study this question. What is the key assumption for this design? Does it hold? 
+
+- Propose a before-and-after comparison design to study this question. What is the key assumption for this design? Does it hold? 
+
+- Propose a diff-in-diff design to study this question. What is the key assumption for this design? Does it hold? 
+
+- Which of the proposed design would work the best in this example?
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

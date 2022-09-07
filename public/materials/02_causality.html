@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>POL 304: Using Data to Understand Politics and Society</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Olga Chyzh [www.olgachyzh.com]" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# POL 304: Using Data to Understand Politics and Society
+]
+.subtitle[
+## Intro to Causality
+]
+.author[
+### Olga Chyzh [www.olgachyzh.com]
+]
+
+---
+
+
+
+
+## Reading
+
+- [Imai, Kosuke. Quantitative Social Science, Chapter 2 Sections 2.1, 2.3, and 2.4](https://assets.press.princeton.edu/chapters/s2-11025.pdf)
+
+
+
+---
+## Today's Class
+
+- How to estimate causal effects with social science data?
+
+- Two examples: 
+
+    - breakfast cereal example
+    
+    - health savings experiment
+
+---
+## Very Healthy Cereal
+
+.pull-left[
+&lt;img src="./images/total-cereal.png" width="1200px" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="./images/total-label.png" width="1200px" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Empirical Observation
+
+- This cereal sticks to a magnet.
+&lt;img src="./images/total-magnet.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+---
+## Why Did it Stick?
+
+- Propose a theoretical model (that includes a causal mechanism) to explain the observation.
+
+--
+
+- Suppose our causal mechanism is that this cereal sticks to a magnet because of its iron content.
+
+- A testable hypothesis: cereals that are high in iron stick to a magnet.
+
+
+
+---
+## Test
+.pull-left[
+&lt;img src="./images/honey-smacks.png" width="1200px" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="./images/honey-smacks-label.png" width="1200px" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Does It Stick?
+- This cereal does not stick to a magnet.
+&lt;img src="./images/honey-smacks-magnet.png" width="350px" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+## Causal Effect
+
+- Unit of analysis: cereal type
+
+- Treatment variable (causal variable of interest) `\(T\)`: iron content (high/low)
+
+- Treatment group (treated units): Total cereal
+
+- Control group (untreated units): Honey Smacks cereal
+
+- Outcome variable (response variable) `\(Y\)`: whether it sticks to a magnet (yes/no).
+
+---
+## Causality
+
+- Counterfactual: Would Total cereal stick to a magnet if it did not have iron?
+
+- Two potential outcomes: `\(Y(1)\)` and `\(Y(0)\)`
+
+- Causal effect: `\(Y(1)-Y(0)\)`
+
+- Fundamental problem of causal inference: only one of the two potential outcomes is observable.
+
+- Cannot calculate individual causal effect `\(Y(1)-Y(0)\)`!
+
+- Importance of control group.
+
+
+
+
+---
+## Can We Approximate Counterfactuals
+
+- Association is not causation! (there could be confounders)
+
+- *Confounding variable* is a pre-preatment variable that is associated with both the treatment and the outcome and may bias our estimation of the treatment effect.
+
+- Matching: Find a unit that is the same as the those in the treatment group, except for the treatment.
+
+- Is Honey Smacks a good match for Total cereal?
+
+--
+
+- Find another healthy cereal that has the same ingredients (other than iron), texture, etc.
+
+---
+## Strategy 1: Matching (A Quasi-Experiment)
+
+- NJ increased the minimum wage. Does increase in min wage lead to unemployment?
+
+    - Find a similar state to NJ that did not increase min wage.
+
+    - Match to rule out potential confounders: e.g., compare only Burger Kings in urban areas
+
+- Are Black people less likely to get job offers?
+
+    - Find a white person who has the exact same credentials as a black person.
+---
+## Problem 
+
+- Cannot match on everything
+
+- Unobserved confounders: variables associated with treatment and outcome
+    - Selection bias is confounding bias due to participant self-selection into the treatment/control groups.
+    
+    - Can you think of examples?
+    
+---
+## Your Turn
+
+- Suppose we are interested in the causal effect of alcohol on depression
+
+- Propose a research design, such that:
+    
+    - units in the treatment group engage in high alcohol consumption, while units in the control group do not
+    
+    - the treatment and the control group do not differ in other ways that may be correlated with alcohol consumption and depression
+    
+    - units did not self-select into treatment/control groups
+    
+
+
+
+---
+## Randomized Control Trials (RCT)
+
+- Random assignment of participants (observations) by the researcher into the treatment/control groups.
+
+    - How would you do this in practice?
+
+- Key idea: Randomization of the treatment makes the treatment and control groups “identical” on average
+
+- The two groups are similar in terms of all (both observed and unobserved) characteristics
+
+- Can attribute the average differences in outcome to the difference in the treatment
+
+`$$\text{Sample Average Treatment Effect (SATE)}=\frac{1}{n}\sum\limits_{i=1}^{n}\{Y_i(1)-Y_i(0)\}$$`
+- SATE is not observable, but can estimate as `\(\bar{Y}(1)-\bar{Y}(0)\)`
+
+- Randomized experiments are the gold standard
+
+- Double-blind experiments: Placebo effects and Hawthorn effects
+
+???
+
+Hawthorn effect is changing behavior because you are being studied.
+
+
+---
+
+&lt;img src="./images/table2.3.png" width="1200px" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Using Technology to Increase Savings
+
+- Question: How to encourage people to save for emergency healthcare?&lt;sup&gt;1&lt;/sup&gt;
+
+- A small amount of investments in preventative health products (e.g.,
+bed nets, water filters) can save many lives in developing countries
+
+- Hypothesis: simple saving technologies can increase investments
+
+- A randomized field experiment in Kenya
+    - control: encouraged to save, no device given
+    - T1: metal safe box with the key given to participants
+    - T2: same box but the key given to officers,  participants must ask officers to open the box at a shop
+
+- Outcome: amount of savings for health products 6 and 12 months later
+
+.footnote[
+&lt;sup&gt;1&lt;/sup&gt; Dupas, Pascaline and Jonathan Robinson. 2013. “Why Don’t the Poor Save More? Evidence from Health Savings Experiments.” American Economic Review, Vol. 103, No. 4, pp. 1138-1171.
+]
+
+---
+## Study Design
+
+- Randomized treatment
+
+    - 111 control, 195 lockbox, 117 safe box
+
+- Outcome measured in follow-up surveys after 6 and 12 months
+
+    - 102 are in the control group, 184 have received a locked box, 107 have received a safe box.
+
+- Why have a control group rather than compare the treatment groups to the savings rates in the population?
+
+- Does the drop-out rate differ across the treatment conditions? What does this result suggest about the internal and external validity of this study?
+
+---
+## Internal and External Validity
+
+- *Internal validity*--- the extent to which causal assumptions are satisfied in the study.
+
+- *External validity*---the extent to which the conclusions can be generalized beyond a particular study.
+
+---
+## Calculate SATE
+
+Control: `\(\bar{Y}(0)= 257.83\)`
+
+Lockbox: `\(\bar{Y}^{T_1}(1)= 307.83\)`
+
+Safe box: `\(\bar{Y}^{T_2}(1)= 408.22\)`
+
+`\(SATE_{T_1}=307.83-257.83=50\)`
+
+`\(SATE_{T_2}=408.22-257.83=150.39\)`
+---
+## Examine the Balance
+
+- If randomization "took", the experimental groups should be roughly equal on the pre-treatment variables (e.g., gender, marital status, age).
+
+.center[Gender]
+
+|   control|   lockbox|   safebox|
+|---------:|---------:|---------:|
+| 0.7254902| 0.7336957| 0.7943925|
+
+.center[Age]
+
+|  control|  lockbox|  safebox|
+|--------:|--------:|--------:|
+| 41.87255| 39.58152| 38.54206|
+
+.center[Marital Status]
+
+|  control|   lockbox|  safebox|
+|--------:|---------:|--------:|
+| 0.745098| 0.7608696| 0.728972|
+
+---
+## Subset Analysis
+
+- If we think that the groups are unbalanced, despite randomization, can compare means within subsets.
+
+.center[Married Women Only]
+
+| control| lockbox|  safebox|
+|-------:|-------:|--------:|
+|  239.66| 332.433| 557.1356|
+
+
+.center[Unmarried Women Only]
+
+
+|  control|  lockbox|  safebox|
+|--------:|--------:|--------:|
+| 218.5417| 220.4737| 264.0385|
+
+
+---
+## What You Learned or Already Knew
+
+- How to generate a research question (an inductive approach)
+
+- How to propose a theoretical model (causal mechanism) and derive a testable hypothesis
+
+- Concepts: unit of analysis, treatment/control variable, treatment/control group, outcome variable, counterfactual, potential outcomes, causal effect, confounders, matching, selection bias, random assignment, SATE, randomized experiment, placebo effect, hawthorn effect, attrition/drop-out rate, internal and external validity, balance, subset analysis.
+
+---
+## Before Next Class
+
+- Install R and RStudio
+
+- Complete assigned readings
+
+- Next Class: causality, experimental design, a two-sample t-test
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -17,11 +17,22 @@ All the class materials will be posted/updated here.
     <tbody>
       <tr>
         <td>Sep 12</td>
-        <td>Introduction to R, RStudio, <br>
-         and RMarkdown</td>
+        <td>Introduction <br>
+         to Causality</td>
         <td>
           <dl>
-          <dd><a href="../materials/01_intro.pdf" target=_blank>course intro & syllabus</a> | <a href="../materials/02_intro_R.html" target=_blank>R, RStudio, RMarkdown</a> |<a href="../materials/03_more_R.html"target=_blank> more R </a>|<a href="../materials/scripts/myfirstmarkdown.Rmd"target=_blank> code in class </a>
+          <dd><a href="../materials/01_intro.html" target=_blank>course intro & syllabus</a> | <a href="../materials/02_causality.html" target=_blank>intro to causality</a>
+          </dd>
+          </dl>
+        </td>
+      </tr>
+      <tr>
+        <td>Sep 19</td>
+        <td>Natural <br>
+         Experiments</td>
+        <td>
+          <dl>
+          <dd><a href="../materials/03_obs_data.html" target=_blank>natural experiments</a>
           </dd>
           </dl>
         </td>
