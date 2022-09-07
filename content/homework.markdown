@@ -15,7 +15,7 @@ title: Homework Assignments
         <td>Sep 30</td>
         <td>
           <dl>
-          <dd><a href="../homework/assignment1.html" target=_blank>Homework 1</a>
+          <dd><a href="../materials/homework/assignment1.html" target=_blank>Homework 1</a>
           </dd>
           </dl>
         </td>
