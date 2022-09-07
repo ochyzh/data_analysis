@@ -1,9 +1,6 @@
 ---
 title: Homework Assignments
 ---
-<p>
-
-</p>
 
 <div>
   <table class="table table-striped table-hover">
