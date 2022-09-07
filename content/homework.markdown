@@ -33,7 +33,7 @@ title: Homework Assignments
         <td>Dec 7</td>
         <td>
           <dl>
-          <dd><a href="../homework/homework03_alt.Rmd" target=_blank>Assignment 3</a>
+          <dd><a href="../materials/homework/assignment3.html" target=_blank>Assignment 3</a>
           </dd>
           </dl>
         </td>

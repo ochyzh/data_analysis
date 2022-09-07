@@ -1,0 +1,28 @@
+---
+title: "POL 304 - Assignment #3: Final Mini-Project"
+author: " "
+date: " "
+output: html_document
+---
+
+For this assignment, you will implement the research design that you proposed in Assignment 2 (accounting for any comments that you received). You will collect the data (you have to find your own data to use), and test your hypothesis. The format, in other words, is exactly the same as Asssignment 1, only you will be using your own data. The goal is to demonstrate the mastery of a method that you learned in class.
+
+1. Research Question [15 words]: State a general research question that you can answer by using one of the tools learned in class. (This can be the same question as in Assignment 2.)
+
+2. Previous Literature [100 words] Go on Scholar Google and find a scholarly article, published within the last 5 years, that answers this question (or a similar one). What is the theory used in the article?
+
+3. Theory [150 words]: Propose a logically consistent theoretical model that answers your question. Make sure to explicitly state all your assumptions.  (This can be the same theory as the one you proposed in Assignment 2, accounting for any feedback.) 
+
+4. Improvement on the previous literature [50 words]: How does your theory advance on the one used in the article in question 2.
+
+5. Hypothesis [15 words]: Derive a prediction from your theory. Make sure that your hypothesis includes the independent variable, the dependent variable, and specifies the relationship between them. 
+
+7. Data [100 words]: **You must use at least one of the tools learned in class to test your hypothesis. Explicitly state which tool(s) you are using.** Describe the data will you use to answer your question.  Where will you obtain the data (e.g., website)? What is the unit of analysis? How will you measure your independent and dependent variable?
+
+8. Download/save the data. Clean up the data and perform your analysis. You may perform your analysis using any software you are comfortable with. R is not required.
+
+9. Results [100 words plus any graphs, figures]: **Note: all figures and tables must be formatted, do not include code or software output. All tables and figures must be described in text.** Present the results of your analysis (e.g., tables, graphs). Describe the results.
+
+10. Did you get the answer you expected? Why or why not? [100 words]
+
+Note: The word limits indicate strict maxima (any extra words will not be treated as a part of your answer). You must submit (1) the data you used (a zip file if large) (3) a file that contains detailed answers to each of the above question (MS Word, pdf, etc). Please put the word counts next to each answer.
