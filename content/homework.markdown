@@ -1,6 +1,9 @@
 ---
 title: Homework Assignments
 ---
+<p>
+
+</p>
 
 <div>
   <table class="table table-striped table-hover">
@@ -15,7 +18,7 @@ title: Homework Assignments
         <td>Sep 30</td>
         <td>
           <dl>
-          <dd><a href="./homework/Assignment1.html" target=_blank>Assignment 1</a>
+          <dd><a href="../homework/Assignment1.html" target=_blank>Assignment 1</a>
           </dd>
           </dl>
         </td>

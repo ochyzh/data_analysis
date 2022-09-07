@@ -20,7 +20,7 @@ menu:
       url: "homework/"
       weight: 3
     - name: Syllabus
-      url: "yllabus/"
+      url: "syllabus/"
       weight: 4
 
 
