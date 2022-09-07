@@ -1,5 +1,5 @@
 ---
-title: Assignments
+title: Homework Assignments
 ---
 
 <div>
@@ -15,7 +15,7 @@ title: Assignments
         <td>Sep 30</td>
         <td>
           <dl>
-          <dd><a href="../homework/2022-09-30 Assignment 1.Rmd" target=_blank>Homework 1</a>
+          <dd><a href="../homework/assignment1.html" target=_blank>Homework 1</a>
           </dd>
           </dl>
         </td>
