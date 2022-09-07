@@ -1,0 +1,33 @@
+---
+title: "POL 304 - Assignment #1: Indiscriminate Violence and Insurgent Attacks"
+author: ""
+date: ""
+output: html_document
+---
+
+In this assignment, you will propose a research design for your final mini-project (Assignment 3). You will propose a question, formulate a theory, and derive a hypothesis, and describe how you will test this hypothesis in your final mini-project. Here is an example for you to use as a template (**You have to think of your own research question, theory, hypothesis, ect. This example is solely to give you a template.**) After reading the example, complete questions 1--7 below.
+
+Suppose the research question is "What factors determine the policy agenda of world leaders?* You could then proposed an "urgency" model of policy issue prioritization that goes something like this: 
+
+*Every world leader has a vast agenda they want to implement. Implementing reform, however, is a very time-consuming process: leaders have to collect the necessary information, formulate a policy, and work with their party (and the opposition) to enact the policy into law. As a result, they may only able to accomplish a handful of specific reforms throughout their term.  In addition to pursuing their own policy goals, leaders also have to respond to major events outside of their control, e.g. wars, terrorism, economic crises. These exogenous events crowd out any pre-existing agenda, because they often demand an immediate response. This means that world leaders who experience a major political crisis early in their term will have to shift their policy priorities from the issue they campaigned on to responding to the event.* 
+
+Based on this theoretical model,  we can derive the following testable research hypothesis:
+
+*World leader's policy priorities will be defined by major political events early in their term.*
+
+We can test our hypothesis using the following research design. Our unit of analysis will be speeches by US Presidents, Clinton and Obama. Our independent variable---the defining political event early in the leader's term---will be the "economic recession" for Obama (Clinton did not experience a similar defining event, so we will treat him as a control group). We will use the `stylo` package to identify the most frequent substantive words in these President's speeches, before and after their election.[^footnote1] If our hypothesis is supported, we will see no meaningful change in the word usage by Clinton---as he could continue focusing on his campaign agenda.  In the case of Obama, we will see a change in topics raised during the campaign to using terms related to the economy.
+
+[^footnote1]: We will cover how to do this in our class on text analysis.
+
+# Questions:
+
+1. Research Question [15 words]: State a general research question that you can answer using one of the methods you learned (or will learn) in class. (Note how, in the above example, the research question and the theory are general, as they do not name specific leaders or policy areas.  Also note that a research question must be open-ended, i.e., do not ask yes/no questions).
+
+2. Theory [150 words]: Propose a logically consistent theoretical model that answers your question. Make sure to explicitly state all your assumptions.  (Note that it is more important that your theory is logically consistent than correct.  If you cannot fit within the word limit, simplify your theory.) 
+
+3. Hypothesis [15 words]: Derive a prediction from your theory.
+
+4. Data [100 words]: Describe the data will you use to answer your question.  Where will you obtain the data (e.g., website)? What is the unit of analysis? How will you measure your independent and dependent variable?
+
+
+Note: The word limits indicate strict maxima (any extra words will not be treated as a part of your answer). 
