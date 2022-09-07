@@ -21,7 +21,7 @@ title: Assignments
         </td>
       </tr>
       <tr>
-        <td>Oct 38</td>
+        <td>Oct 28</td>
         <td>
           <dl>
           <dd><a href="../materials/homeworks/homework02_alt.Rmd" target=_blank>Homework 2</a>
