@@ -26,7 +26,7 @@ menu:
 
 params:
   description: "A website built through Hugo and blogdown."
-  footer: "&copy; [Yihui Xie](https://yihui.org) 2017 -- {Year} | [Github](https://github.com/ochyzh) | [Twitter](https://twitter.com/olga_chyzh)"
+  footer: "&copy; [Olga Chyzh](https://yihui.org) 2017 -- {Year} | [Github](https://github.com/ochyzh) | [Twitter](https://twitter.com/olga_chyzh)"
 
 markup:
   highlight:
