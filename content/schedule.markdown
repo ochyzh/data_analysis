@@ -21,7 +21,7 @@ All the class materials will be posted/updated here.
          to Causality</td>
         <td>
           <dl>
-          <dd><a href="../materials/01_intro.html" target=_blank>course intro & syllabus</a> | <a href="../materials/02_causality.html" target=_blank>intro to causality</a>| <a href="../materials/01_intro_R.html" target=_blank>intro to R</a> | <a href="../materials/data/rosca" target=_blank> practice data</a>
+          <dd><a href="../materials/01_intro.html" target=_blank>course intro & syllabus</a> | <a href="../materials/02_causality.html" target=_blank>intro to causality</a>| <a href="../materials/01_intro_R.html" target=_blank>intro to R</a> | <a href="../materials/data/rosca.csv" target=_blank> practice data</a>
           </dd>
           </dl>
         </td>
