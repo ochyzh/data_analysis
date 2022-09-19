@@ -391,3 +391,19 @@ Suppose we would like to study the effect of proximity to a garbage incinerator 
 
 - Which of the proposed design would work the best in this example?
 
+
+---
+## Lab Questions
+
+1. Download and open the data on housing prices, `hprice3`.
+
+2. Create a binary variable, `nearinc` that equals to 1 if the house is within 3 miles of the incinerator.
+
+3. How many houses are there in the data in each year?
+
+4. Compare the average house price in 1978 between the houses near and far from the incinerator.
+
+5. Compare the average house price in 1981 between the houses near and far from the incinerator.
+
+6. Implement the diff-in-diff design.
+

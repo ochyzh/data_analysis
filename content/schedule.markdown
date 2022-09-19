@@ -32,7 +32,7 @@ All the class materials will be posted/updated here.
          Experiments</td>
         <td>
           <dl>
-          <dd><a href="../materials/03_obs_data.html" target=_blank>natural experiments</a>
+          <dd><a href="../materials/03_obs_data.html" target=_blank>natural experiments</a>| <a href="../materials/data/hprice.csv" target=_blank> practice data</a>
           </dd>
           </dl>
         </td>
