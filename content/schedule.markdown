@@ -37,6 +37,17 @@ All the class materials will be posted/updated here.
           </dl>
         </td>
       </tr>
+      <tr>
+        <td>Sep 26</td>
+        <td>Measurement <br>
+         Bias</td>
+        <td>
+          <dl>
+          <dd><a href="../materials/04_measurement.html" target=_blank>measurement bias</a>| <a href="../materials/data/vignettes.csv" target=_blank> practice data</a>
+          </dd>
+          </dl>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

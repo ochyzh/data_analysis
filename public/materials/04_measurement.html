@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>POL 304: Using Data to Understand Politics and Society</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Olga Chyzh [www.olgachyzh.com]" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# POL 304: Using Data to Understand Politics and Society
+]
+.subtitle[
+## Measurement Bias
+]
+.author[
+### Olga Chyzh [www.olgachyzh.com]
+]
+
+---
+
+
+
+
+
+## Today's Agenda
+
+- Review Sections 3.1, 3.4.2 of QSS Chapter 3
+
+    - Role of randomization in survey sampling
+    
+    - Non-response and other sources of bias 
+    
+
+    
+---
+class: inverse, middle, center
+# Survey Sampling
+
+---
+##  Support for Biden's Covid-19 Plan
+
+   | Favor|
+---------------------------------------------|----
+Require vaccines for federal govt employees | 60% 
+Require companies with `\(\geq100\)` employees to implement vaccine mandates | 58 
+Require healthcare facilities that receive Medicaid or Medicare money to implement vaccine mandates | 63 
+Require companies with `\(\geq100\)` employees to provide paid time off for employees to get vaccinated | 68 
+
+Results for this Gallup poll are based on self-administered web surveys conducted Sept. 13-19, 2021, with a random sample of 4,034 adults, aged 18 and older, who are members of the Gallup Panel. Gallup uses probability-based, random sampling methods to recruit its Panel members.
+---
+
+## Problem
+
+- Most surveys/polls only interview several hundred people/voters
+
+- Goal: infer what 200 million adults are thinking
+---
+
+## The 1936 Literary Digest Poll
+
+- Source: automobile registration, telephone books, etc. 
+
+- Initial sample size: over 10 million straw vote ballots 
+
+- Final sample size: over 2.3 million returned 
+
+- The young Gallup used 50,000 respondents
+
+
+   | FDR's Vote Share |
+---|------------------
+Literary Digest | 43
+Gallup | 56
+Gallup's prediction for LD |44 
+**Actual Outcome** | **62**
+   
+
+???
+
+- Parameter: election outcome
+
+- Data: a sample of respondents answering the question of which
+  candidate they support
+
+- FDR (incumbent; from 1933 to 1945) vs. Alfred Landon (Kansas
+  Governor)
+
+- Recovering from the Great Depression: New Deal
+
+- Selection bias: the initial frame -- screened out poor (only 1/4
+  households had telephones)
+
+- Gallup used only 3,000 to predict the Literary Digest's
+  prediction in way advance
+
+- Poor voted for Roosevelt
+
+- Literary Digest went bankrupt afterward
+
+- But, Gallup was also a bit off
+
+---
+## The 1948 Election
+&lt;img src="./images/dewey.jpg" width="1200px" style="display: block; margin: auto;" /&gt;
+???
+
+- Harry Truman (incumbent; vice president of FDR who died in the
+  office), Thomas Dewey (NY Governor)
+
+- World War II ending, the Cold War starting
+
+- Everyone thought Truman was going to lose
+
+- In fact, the newspaper went into press with the wrong news!
+
+- Why did the newspaper get the results wrong? 
+
+---
+## The Polling Disaster
+
+| Truman| Dewey | Thurmond | Wallace |
+------------|-------|-------|-----------|-----------  
+Crossley |     45 |    50 |        2 |       3 
+Gallup   |     44 |    50 |        2 |       4 
+Roper    |     38 |    53 |        5 |       4 
+**Actual Outcome** | **50** | **45** | **3** | **2** 
+
+- Quota sampling!
+
+- fixed quota of certain respondents for each interviewer
+
+- sample resembles the population with respect to these characteristics
+
+- potential unobserved confounding `\(\rightsquigarrow\)` *selection bias*
+
+???
+
+- Quota sampling also suffers from potential bias with respect to
+  the characteristics that are not used to create quotas
+
+- you can make sex, age, race, rent, etc. identical in
+  distribution between the sample and the population
+
+- but that is not enough to make the distributions of Democratic
+  and Republican votes identical to that in the population
+
+- There are always other factors that affect the outcome of
+  interest
+
+- interviewers are free to choose within quota; tend to contact
+  those who are easier to reach (having a telephone etc.)  
+
+- Republicans were wealthier than Democrats; they were more likely
+  to interview Republicans -- Republican bias
+  
+---
+## Sample Surveys
+
+- *Probability sampling* to ensure representativeness 
+
+- Definition: every unit in the population has a known non-zero
+    probability of being selected 
+
+- *Simple random sampling*: every unit has an *equal* selection probability
+
+&lt;img src="./images/sample_surveys.png" width="1200px" style="display: block; margin: auto;" /&gt;
+
+???
+
+- Randomly sample units with some known probabilities 
+
+- Inferential population `\(=\)` eligible voters
+
+- Frame population `\(=\)` phone numbers listed in a phone book
+
+- Probability vs. non-probability sampling; the former removes
+  sampling bias
+  
+- The decision to answer or not to answer isn't random
+
+- Response bias: lying, confusion, interviewer bias
+
+---
+
+## Civilian Attitudes and War against Insurgency
+
+- Conventional war: military against another military
+
+- Counter-insurgency war: military against insurgents
+
+     - From Vietnam war to war in Afghanistan
+    
+     - Key to victory: winning hearts and minds of civilians
+     
+     - aid provision, information campaign, minimizing civilian casualties
+
+---
+
+## Non-Response and Other Sources of Bias
+
+- Item non-response, like unit non-response, can create bias
+
+- More violent areas `\(\rightsquigarrow\)`   more non-response
+
+.center[Missing Values by Region: Support for the Taliban]
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Helmand &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Khost &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Kunar &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Logar &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Uruzgan &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.03 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.006 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.062 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+.center[Missing Values by Region: Support for the ISAF]
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Helmand &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Khost &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Kunar &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Logar &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Uruzgan &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.016 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.005 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.021 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+- Sensitive questions `\(\rightsquigarrow\)`  non-response, social desirability bias
+
+- racial prejudice, corruption, even turnout
+
+---
+## List Experiment
+
+- Script for *control group*:
+
+ I'm going to read you a list with the names of
+  different groups and individuals on it. After I read the entire
+  list, I'd like you to tell me how many of these groups and
+  individuals you broadly support, meaning that you generally agree
+  with the goals and policies of the group or individual. Please don't
+  tell me which ones you generally agree with; only tell me how many
+  groups or individuals you broadly support.
+  
+- Karzai Government; National Solidarity Program; Local
+Farmers
+
+---
+
+## List Experiment
+
+- Script for *treatment group*:    
+
+  I'm going to read you a list with the names of
+  different groups and individuals on it. After I read the entire
+  list, I'd like you to tell me how many of these groups and
+  individuals you broadly support, meaning that you generally agree
+  with the goals and policies of the group or individual. Please don't
+  tell me which ones you generally agree with; only tell me how many
+  groups or individuals you broadly support.
+  
+-  Karzai Government; National Solidarity Program; Local
+Farmers; ISAF (Taliban)
+
+
+---
+
+## Analysis of List Experiment
+
+`$$\text{Proportion of those who support ISAF}= \bar{Y}(1)-\bar{Y}(0)= 0.049$$`
+
+- Problems with list experiments: floor and ceiling effects
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; response &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; control &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; ISAF &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; taliban &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 188 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 174 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 265 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 278 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 433 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 265 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 260 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 287 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 182 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 198 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+---
+## Summary
+
+Importance of probability sampling:
+
+1. ensures representativeness
+
+2. enables the calculation of uncertainty (QSS Chapter 7)
+
+Sources of bias in survey sampling
+
+1. unit non-response
+
+2. item non-response
+
+3. social desirability bias
+
+4. differential item functioning
+
+Survey methods for sensitive questions
+
+1. list experiment
+
+2. randomize response method
+
+---
+class: inverse, middle, center
+# Lab
+
+---
+## Political Efficacy in China and Mexico
+
+- Goal: explore research tools for correcting survey measurement bias
+
+- In 2002, the World Health Organization conducted a survey of two
+provinces in China and three provinces in Mexico. This
+exercise is based on: 
+
+- Gary King, Christopher J. L. Murray, Joshua A. Salomon, and Ajay Tandon. (2004). '[Enhancing the Validity and Cross-Cultural Comparability of Measurement in Survey Research.]( https://doi.org/10.1017/S000305540400108X)' *American Political Science Review*, 98:1 (February), pp.191-207.
+
+---
+## Self-Assessment Question
+
+How much say do you have in getting the government to address issues that interest you?
+
+(5) Unlimited say, (4) A lot of say, (3) Some say, (2) Little say, (1) No say at all.
+---
+## Data Exercise
+
+- Download and open the data.
+
+
+
+- Compute the mean response for each country. 
+
+- Plot the distribution of responses separately for China and Mexico using
+barplots, where the vertical axis is the proportion of respondents.
+
+
+```r
+vig_chi &lt;- subset(vig, china == 1)
+vig_mex &lt;- subset(vig, china == 0)
+
+# China
+chi_table &lt;- prop.table(table(vig_chi$self))
+barplot(chi_table, main = "China")
+
+# Mexico
+mex_table &lt;- prop.table(table(vig_mex$self))
+barplot(mex_table, main = "Mexico")
+```
+
+---
+## How Much Say Do You Have? 
+&lt;img src="04_measurement_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Data Exercise Cont'd
+
+- Which country's respondents seem to have a higher degree of political efficacy?  Does this seem plausible when Mexican citizens voted out out the Institutional Revolutionary Party (PRI) after more than 70 years or rule and Chinese citizens have not been able to vote in a fair election to date?
+
+---
+## Vignettes
+
+After the self-assessment question, three vignette questions were
+asked.
+
+- [Alison] lacks clean drinking water. She and her neighbors are supporting an opposition candidate in the forthcoming elections that has promised to address the issue. It appears that so many people in her area feel the same way that the opposition candidate will defeat the incumbent representative.
+
+- [Jane] lacks clean drinking water because the government is pursuing an industrial development plan. In the campaign for an upcoming election, an opposition party has promised to address the issue, but she feels it would be futile to vote for the opposition since the government is certain to win.
+
+- [Moses] lacks clean drinking water. He would like to change this, but he can't vote, and feels that no one in the government cares about this issue. So he suffers in silence, hoping something will be done in the future.
+
+The respondent was asked to assess each vignette in the same manner as
+the self-assessment question.
+
+- How much say does ['name'] in getting the government to address issues that interest [him/her]?
+
+(5) Unlimited say, (4) A lot of say, (3) Some say, (2) Little say, (1) No say at all.
+
+---
+## Your Turn
+
+- Compute the proportion of respondents, again separately for China and Mexico, who ranks themselves (according to the self-assessment question) as having less say in the government’s decisions than Moses (the last vignette).
+
+- How many respondents in China think they have less say than Moses?
+
+- How many respondents in Mexico think they have less say than Moses?
+
+- What does this tell you?
+
+---
+## Challenge Yourself
+
+- Restrict the data to survey respondents who ranked these three vignettes
+in the expected order (i.e., `Alison` `\(\ge\)` `Jane` `\(\ge\)`
+`Moses`).  
+
+- Now create a variable that represents how respondents
+rank themselves relative to each vignette.  This variable should
+be equal to 1 if a respondent ranks themselves lower than
+`Moses`, 2 if ranked the same as `Moses` or higher than
+`Moses` but lower than `Jane`, 3 if ranked the same as `Jane`
+or higher than `Jane` but lower than `Alison`, and 4 if ranked as high as `Alison` or higher.  
+
+- Create the barplots of this new variable as in Question 1.  The vertical axis should represent the proportion of respondents for each response category. Also,
+compute the mean value of this new variable separately for China and
+Mexico.  Compare these results with those obtained in Question 1.
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
