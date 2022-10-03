@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>POL 304: Using Data to Understand Politics and Society</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Olga Chyzh [www.olgachyzh.com]" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# POL 304: Using Data to Understand Politics and Society
+]
+.subtitle[
+## Linear Regression
+]
+.author[
+### Olga Chyzh [www.olgachyzh.com]
+]
+
+---
+
+
+
+
+
+## Today's Agenda
+
+- Review of Section 4.3 of QSS Chapter 4
+
+    - Regression and causality
+    
+    - Regression with multiple predictors (categorical IV)
+    
+---
+
+## Which Person is the More Competent?
+&lt;img src="./images/face.png" width="1200px" style="display: block; margin: auto;" /&gt;
+
+- 2004 Wisconsin Senate Race
+
+--
+
+- Russ Feingold (D) 55% vs. Tim Micheles (R) 44%
+
+    
+---
+## Facial Competence and Vote Share
+
+&lt;img src="05_regression_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+---
+
+## Best Fit Line
+
+&lt;img src="05_regression_files/figure-html/unnamed-chunk-3-1.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Linear Regression Model
+
+- Model
+
+`$$\begin{eqnarray*}
+      Y &amp; = &amp; \underbrace{\alpha}_{\textsf{intercept}} +
+              \underbrace{\beta}_{\textsf{slope}}  X +
+              \underbrace{\epsilon}_{\textsf{error term}} 
+\end{eqnarray*}$$`
+
+- `\(Y\)`: dependent/outcome/response variable
+
+- `\(X\)`: independent/explanatory variable, predictor
+
+- `\((\alpha, \beta)\)`: coefficients (parameters of the model)
+
+- `\(\epsilon\)`: unobserved error/disturbance term (mean zero)
+
+---
+
+## Interpretation:
+
+- `\(\alpha + \beta X\)`: mean of `\(Y\)` given the value of `\(X\)`
+
+   - This is the line
+
+- `\(\beta\)`: increase in `\(Y\)` associated with one unit increase in `\(X\)`
+   
+   - For every 1-unit increase in `\(X\)`, there is a `\(\beta\)` change in `\(Y\)`
+   
+   - This works in reverse as well: For every 1-unit decrease in `\(X\)`, there is a `\(-\hat{\beta}\)` change in `\(Y\)`
+
+- `\(\alpha\)`: the value of `\(Y\)` when `\(X\)` is zero
+
+  - Be careful! This number is not always meaningful
+
+				
+---
+## Facial Competence and Vote Share
+
+&lt;img src="05_regression_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Women as Policy Makers
+
+- Do women promote different policies than men?
+
+- Observational studies: compare policies adopted by female politicians with those adopted by male politicians
+
+- Randomized natural experiment:
+
+    - one third of village council heads reserved for women
+    
+    - assigned at the level of Gram Panchayat (GP) since mid-1990s
+    
+    - each GP has multiple villages
+
+- What does the effects of female politicians mean?
+
+- Hypothesis: female politicians represent the interests of female voters
+
+- Female voters complain about drinking water while male voters complain about irrigation
+
+---
+
+&lt;img src="./images/women_data.png" width="1200px" style="display: block; margin: auto;" /&gt;
+
+---
+## Does the reservation policy increase female politicians?
+
+Proportions of women in reserved/non-reserved GP:
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Reserved &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Not Reserved &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.075 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+---
+## Does it change the policy outcomes?
+
+
+```r
+## drinking-water facilities
+mean(women$water[women$reserved == 1]) -
+    mean(women$water[women$reserved == 0])
+```
+
+```
+## [1] 9.252423
+```
+
+```r
+## irrigation facilities
+mean(women$irrigation[women$reserved == 1]) -
+    mean(women$irrigation[women$reserved == 0])
+```
+
+```
+## [1] -0.3693319
+```
+
+---
+## Slope Coefficient = Difference-in-Means Estimator
+
+- Randomization enables a causal interpretation of estimated regression
+coefficient `\(\rightsquigarrow\)` this is not always the case
+
+
+```r
+mean(women$water[women$reserved == 1]) -
+    mean(women$water[women$reserved == 0])
+```
+
+```
+## [1] 9.252423
+```
+
+```r
+lm(water ~ reserved, data = women)
+```
+
+```
+## 
+## Call:
+## lm(formula = water ~ reserved, data = women)
+## 
+## Coefficients:
+## (Intercept)     reserved  
+##      14.738        9.252
+```
+
+
+---
+
+## Linear Regression with Multiple Predictors
+
+The model:
+
+$$
+`\begin{eqnarray*}
+      Y &amp; = &amp; \alpha + \beta_1 X_1 + \beta_2 X_2 + \ldots + \beta_p X_p + \epsilon
+\end{eqnarray*}`
+$$
+Sum of squared residuals (SSR):
+
+$$
+`\begin{eqnarray*}
+      \textsf{SSR} &amp; = &amp; \sum_{i=1}^n \hat\epsilon_i^2 \ = \ \sum_{i=1}^n
+                         (Y_i - \hat\alpha - \hat\beta_1 X_{i1} -
+                         \hat\beta_2 X_{i2} - \cdots - \hat\beta_p X_{ip})^2
+\end{eqnarray*}`
+$$
+
+---
+## Multiple Regression
+
+- Most outcomes of interests `\(Y\)` are multi-causal;
+
+- Researchers are often interested in isolating the effect of the hypothesized theoretically relevant variable `\(X\)`;
+
+- Use multiple regression to statistically ''control for'' other causal variables `\(Z\)`.
+
+---
+
+## Multiple Regression
+
+- Move from a simple regression of:
+`$$Y_i = \alpha + \beta X_i + \epsilon_i$$`
+- to a multiple regression of:
+`$$Y_i = \alpha + \beta_1 X_i + \beta_2 Z_i + \epsilon_i,$$`
+where `\(Y_i\)` is the dependent variable, `\(X_i\)` and `\(Z_i\)` are independent variables, and `\(\epsilon_i\)` is the error term, for observation `\(i\)`, `\(\alpha\)` is the constant, `\(\beta_1\)` and `\(\beta_2\)` are the coefficients associated with `\(X\)` and `\(Z\)`, respectively.
+
+---
+## Multiple Regression
+
+- For simple regression, we thought of `\(\beta\)` as the steepness of the best fitting line that ran through a scatterplot;
+
+- For multiple regression, it is the same idea, but not it is multi-dimensional:
+
+    - Rather than two dimensions-- `\(x\)` and `\(y\)` axis--visible with a scatterplot, we are moving to three or more dimensions.
+---
+
+## Multiple Regression
+
+- Example of three dimensional space:
+
+&lt;img src="./images/multivariate_reg_plane.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+---
+## Multiple Regression
+
+- Same ''for every one-unit change'' interpretation, but now controlling for (holding constant) the effect of another independent variable;
+
+   - `\(\beta_1\)` is the effect of `\(X\)` on `\(Y\)`, *while holding the effect of `\(Z\)` constant*;
+   
+   - `\(\beta_2\)` is the effect of `\(Z\)` on `\(Y\)`, *while holding the effect of `\(X\)` constant*;
+
+
+---
+class: inverse, middle, center
+# Lab
+---
+## The Social Pressure Experiment
+
+- Green, Gerber, and Larimer (2008)
+
+- Randomization of Treatments Enables Causal Interpretation
+
+
+```r
+social &lt;- read.csv("data/social.csv")
+social$messages&lt;-as.factor(social$messages)
+levels(social$messages) # base level is `Civic'
+```
+
+```
+## [1] "Civic Duty" "Control"    "Hawthorne"  "Neighbors"
+```
+
+```r
+fit &lt;- lm(primary2008 ~ messages, data = social)
+round(coef(fit),3)
+```
+
+```
+##       (Intercept)   messagesControl messagesHawthorne messagesNeighbors 
+##             0.315            -0.018             0.008             0.063
+```
+
+- The baseline category, the *Intercept*, is *Civic Duty*
+---
+
+Let's make *Control* the baseline category
+
+- Create a binary indicator variable for each of the 4 categories
+
+
+```r
+social$control&lt;-as.numeric(social$messages=="Control")
+social$civic&lt;-as.numeric(social$messages=="Civic Duty")
+social$hawthorne&lt;-as.numeric(social$messages=="Hawthorne")
+social$neighbors&lt;-as.numeric(social$messages=="Neighbors")
+fit1&lt;-lm(primary2008 ~ civic+ hawthorne+ neighbors, data = social)
+round(coef(fit1),3)
+```
+
+```
+## (Intercept)       civic   hawthorne   neighbors 
+##       0.297       0.018       0.026       0.081
+```
+
+---
+## Fitted Values
+
+- The predicted values give the average outcome under each condition
+
+
+```r
+predict(fit, newdata =  data.frame(messages = 
+                                     unique(social$messages)))
+```
+
+```
+##         1         2         3         4 
+## 0.3145377 0.3223746 0.2966383 0.3779482
+```
+
+```r
+tapply(social$primary2008, social$messages, mean)
+```
+
+```
+## Civic Duty    Control  Hawthorne  Neighbors 
+##  0.3145377  0.2966383  0.3223746  0.3779482
+```
+
+---
+## Your Turn
+
+1. Create a new variable age that equals to 2008- the year of the respondent's birth.
+
+2. Estimate the same model of the experimental treatment on turnout, but now also control for respondent's age.
+
+3. Did the effect of each treatment change? 
+
+4. What is the effect of age on turnout?
+
+5. What is the expected turnout for 18-year-olds? for 40-year-olds?
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

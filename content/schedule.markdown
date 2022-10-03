@@ -48,6 +48,17 @@ All the class materials will be posted/updated here.
           </dl>
         </td>
       </tr>
+      <tr>
+        <td>Oct 3</td>
+        <td>Linear Regression <br>
+         Bias</td>
+        <td>
+          <dl>
+          <dd><a href="../materials/05_regression.html" target=_blank>linear regression</a>| <a href="../materials/data/social.csv" target=_blank> practice data</a>
+          </dd>
+          </dl>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
