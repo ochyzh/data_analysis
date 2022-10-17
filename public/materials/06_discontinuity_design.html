@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>POL 304: Using Data to Understand Politics and Society</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Olga Chyzh [www.olgachyzh.com]" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# POL 304: Using Data to Understand Politics and Society
+]
+.subtitle[
+## Regression Discontinuity Design
+]
+.author[
+### Olga Chyzh [www.olgachyzh.com]
+]
+
+---
+
+
+
+
+
+## Regression Discontinuity Design
+
+- So far, we said that we can interpret the difference in the outcome between the treatment and the control group as the causal effect of the treatment, as long as there are no confounders (the groups are the same on all variables other than the treatment).
+
+- This is achieved by random assignment.
+
+- In observational data, treatment is not randomly assigned--there are many possible confounders.
+
+- We have discussed several research design to address this problem.
+
+- RD is another natural experiment design that helps account for confounders.
+
+---
+## Example: Does Holding Office Increase Personal Wealth?
+
+- Cannot simply compare people who held office with those who did not. Why?
+
+--
+
+- Data on political candidates wealth at the time of death.
+
+- Subset data just to the close elections (Why?)
+
+- Regress wealth on the electoral margin, separately for winners and losers (2 regressions).
+
+---
+
+## Does Holding Office Increase Personal Wealth?
+
+&lt;img src="06_discontinuity_design_files/figure-html/unnamed-chunk-1-1.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+---
+## Causal Effect for Tory
+&lt;img src="06_discontinuity_design_files/figure-html/unnamed-chunk-2-1.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Average Net Wealth for Tory MP
+
+
+```r
+## 
+tory.fit1&lt;-lm(ln.net ~ margin, data = MPs.tory[MPs.tory$margin &gt; 0, ])
+coef(tory.fit1)
+```
+
+```
+## (Intercept)      margin 
+##   13.187802   -0.727782
+```
+
+```r
+exp(13.1878)
+```
+
+```
+## [1] 533812.5
+```
+
+
+
+---
+## Average Net Wealth for Tory Non-MP
+
+```r
+tory.fit0&lt;-lm(ln.net ~ margin, data = MPs.tory[MPs.tory$margin &lt; 0, ])
+coef(tory.fit0)
+```
+
+```
+## (Intercept)      margin 
+##   12.538116    1.491119
+```
+
+```r
+exp(12.538)
+```
+
+```
+## [1] 278730.3
+```
+---
+## Causal Effect
+
+```r
+exp(13.1878) - exp(12.538)
+```
+
+```
+## [1] 255082.2
+```
+
+---
+## Assumption Check
+
+- Is the treatment assignment (whether a candidate wins of loses by a small margin) truly random?  If some candidates win systematically (e.g., election fraud), then this assumption is violated.
+
+- One way to check is to see if there is a correlation in the margin of victory from one election to the next.
+
+
+```r
+## two regressions for Tory: negative and positive margin
+tory.fit3 &lt;- lm(margin.pre ~ margin, data = MPs.tory[MPs.tory$margin &lt; 0, ])
+tory.fit4 &lt;- lm(margin.pre ~ margin, data = MPs.tory[MPs.tory$margin &gt; 0, ])
+## the difference between two intercepts is the estimated effect
+coef(tory.fit4)[1] - coef(tory.fit3)[1]
+```
+
+```
+## (Intercept) 
+## -0.01725578
+```
+
+- Small difference, so can assume that the treatment is as-if random.
+
+---
+## Example: Government Funding and Literacy Rate
+
+- Litschig, Stephan, and Kevin M Morrison. 2013. “[The Impact of Intergovernmental Transfers on Education Outcomes and Poverty Reduction.](http://dx.doi.org/10.1257/app.5.4.206)” *American Economic Journal: Applied Economics* 5(4): 206–40.
+
+- Discontinuity: discrete thresholds (population cut-offs) in funding allocation (10,188, 13,584, and 16,980)
+
+- Idea: a city of 10,187 people is not any different than that of 10,189 people, yet the latter received significantly more funding.
+
+---
+## Government Funding and Literacy Rate
+
+&lt;img src="06_discontinuity_design_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Causal Effect of Funding
+
+
+```r
+lm(literate91 ~ pscore, data = dta.below)
+```
+
+```
+## 
+## Call:
+## lm(formula = literate91 ~ pscore, data = dta.below)
+## 
+## Coefficients:
+## (Intercept)       pscore  
+##    0.775610     0.006948
+```
+
+```r
+lm(literate91 ~ pscore, data = dta.above)
+```
+
+```
+## 
+## Call:
+## lm(formula = literate91 ~ pscore, data = dta.above)
+## 
+## Coefficients:
+## (Intercept)       pscore  
+##      0.8313      -0.0126
+```
+
+```r
+0.8313-0.775610
+```
+
+```
+## [1] 0.05569
+```
+
+---
+## Other Discontinuities
+
+- Can you think of other examples of discontinuities?
+
+
+---
+## Beware!
+
+
+&lt;img src="./images/discontinuity.jpg" width="500px" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, middle, center
+# Lab
+---
+
+## Does Holding Office Increase Personal Wealth?
+
+
+```r
+## load the data and subset them into two parties
+MPs &lt;- read.csv("data/MPs.csv")
+MPs.labour &lt;- subset(MPs, subset = (party == "labour"))
+MPs.tory &lt;- subset(MPs, subset = (party == "tory"))
+
+## two regressions for Labour: negative and positive margin
+labour.fit1 &lt;- lm(ln.net ~ margin,
+                  data = MPs.labour[MPs.labour$margin &lt; 0, ])
+labour.fit2 &lt;- lm(ln.net ~ margin,
+                  data = MPs.labour[MPs.labour$margin &gt; 0, ])
+
+## two regressions for Tory: negative and positive margin
+tory.fit1 &lt;- lm(ln.net ~ margin, data = MPs.tory[MPs.tory$margin &lt; 0, ])
+tory.fit2 &lt;- lm(ln.net ~ margin, data = MPs.tory[MPs.tory$margin &gt; 0, ])
+```
+
+---
+## Make a Plot
+
+
+```r
+## Scatterplot with regression lines for tory
+plot(MPs.tory$margin, MPs.tory$ln.net, main = "Tory", xlim = c(-0.5, 0.5),
+     ylim = c(6, 18), xlab = "Margin of victory",
+     ylab = "log net wealth at death")
+abline(v = 0, lty = "dashed")
+
+## add regression lines
+## Tory: range of predictions
+y1t.range &lt;- c(min(MPs.tory$margin), 0) # min to 0
+y2t.range &lt;- c(0, max(MPs.tory$margin)) # 0 to max
+
+## predict outcome
+y1.tory &lt;- predict(tory.fit1, newdata = data.frame(margin = y1t.range))
+y2.tory &lt;- predict(tory.fit2, newdata = data.frame(margin = y2t.range))
+
+lines(y1t.range, y1.tory, col = "blue")
+lines(y2t.range, y2.tory, col = "blue")
+```
+
+
+---
+## Government Transfers and Literacy 
+
+1. Calculate the two mid-points.
+
+2. For each city, calculate its distance (in percentages) from the nearest midpoint.
+
+
+```r
+## load data
+data &lt;- read.csv("data/transfer.csv")
+mid1 &lt;- 10188 + (13584 - 10188) / 2
+mid2 &lt;- 13584 + (16980 - 13584) / 2
+## Create normalized percent score variable
+data$pscore &lt;-
+    ifelse(data$pop82 &lt;= mid1, (data$pop82 - 10188)/10188,
+           ifelse(data$pop82 &lt;= mid2, (data$pop82 - 13584)/13584,
+                  (data$pop82 - 16980)/16980))*100
+```
+
+---
+## Calculate Causal Effect 
+
+
+```r
+dta.below &lt;- subset(data, (data$pscore &gt;= -3) &amp; (data$pscore &lt; 0))
+dta.above &lt;- subset(data, (data$pscore &gt;= 0) &amp; (data$pscore &lt;= 3))
+## effect on literacy rate
+lm(literate91 ~ pscore, data = dta.below)
+```
+
+```
+## 
+## Call:
+## lm(formula = literate91 ~ pscore, data = dta.below)
+## 
+## Coefficients:
+## (Intercept)       pscore  
+##    0.775610     0.006948
+```
+
+```r
+lm(literate91 ~ pscore, data = dta.above)
+```
+
+```
+## 
+## Call:
+## lm(formula = literate91 ~ pscore, data = dta.above)
+## 
+## Coefficients:
+## (Intercept)       pscore  
+##      0.8313      -0.0126
+```
+
+```r
+0.8313-0.775610
+```
+
+```
+## [1] 0.05569
+```
+
+
+---
+## Your Turn
+
+1. Calculate the causal effect of government funding on poverty rate (`poverty91`).
+
+2. What assumption has to hold in order to interpret this effect as causal? Check this assumption.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

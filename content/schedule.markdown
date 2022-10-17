@@ -59,6 +59,17 @@ All the class materials will be posted/updated here.
           </dl>
         </td>
       </tr>
+      <tr>
+        <td>Oct 17</td>
+        <td>Regression  <br>
+         Discontinuity </td>
+        <td>
+          <dl>
+          <dd><a href="../materials/06_discontinuity_design.html" target=_blank>discontinuity design</a>| <a href="../materials/data/MPs.csv" target=_blank> practice data 1 </a>| <a href="../materials/data/transfer.csv" target=_blank> practice data 2 </a>
+          </dd>
+          </dl>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
