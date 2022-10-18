@@ -5,7 +5,7 @@ date: ""
 output: html_document
 ---
 
-In this assignment, you will propose a research design for your final mini-project (Assignment 3). You will propose a question, formulate a theory, and derive a hypothesis, and describe how you will test this hypothesis in your final mini-project. Here is an example for you to use as a template (**You have to think of your own research question, theory, hypothesis, ect. This example is solely to give you a template.**) After reading the example, complete questions 1--7 below.
+In this assignment, you will propose a research design for your final mini-project (Assignment 3). You will propose a question, formulate a theory, and derive a hypothesis, and describe how you will test this hypothesis in your final mini-project. Here is an example for you to use as a template (**You have to think of your own research question, theory, hypothesis, ect. This example is solely to give you a template.**) After reading the example, complete questions 1--4 below.
 
 Suppose the research question is "What factors determine the policy agenda of world leaders?* You could then proposed an "urgency" model of policy issue prioritization that goes something like this: 
 
