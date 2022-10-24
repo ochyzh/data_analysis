@@ -70,6 +70,17 @@ All the class materials will be posted/updated here.
           </dl>
         </td>
       </tr>
+      <tr>
+        <td>Oct 24</td>
+        <td>Text  <br>
+         as Data </td>
+        <td>
+          <dl>
+          <dd><a href="../materials/07_text_as_data.html" target=_blank> text analysis </a>| <a href="../materials/data/example1.zip" target=_blank> practice data 1 </a>| <a href="../materials/data/example2.zip" target=_blank> practice data 2 </a>
+          </dd>
+          </dl>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
