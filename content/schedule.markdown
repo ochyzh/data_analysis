@@ -81,6 +81,17 @@ All the class materials will be posted/updated here.
           </dl>
         </td>
       </tr>
+      <tr>
+        <td>Oct 31</td>
+        <td>Web-  <br>
+         Scraping </td>
+        <td>
+          <dl>
+          <dd><a href="../materials/08_webscraping.html" target=_blank> web-scraping </a>
+          </dd>
+          </dl>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

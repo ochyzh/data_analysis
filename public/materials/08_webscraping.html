@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>POL 304: Using Data to Understand Politics and Society</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Olga Chyzh [www.olgachyzh.com]" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# POL 304: Using Data to Understand Politics and Society
+]
+.subtitle[
+## Web-Scraping
+]
+.author[
+### Olga Chyzh [www.olgachyzh.com]
+]
+
+---
+
+
+
+
+## Outline
+
+- What is webscraping?
+
+- Webscraping using `rvest`
+
+- Examples
+    
+    + GDP form Wikipedia
+
+    + 2020 US election returns
+    
+- Cleaning the data with `tidyverse`
+
+
+---
+
+## What is Webscraping?
+
+- Extract data from websites 
+
+    + Tables
+    
+    + Links to other websites
+    
+    + Text
+
+&lt;img src="./images/USHouse.png" width="100%" /&gt;
+
+---
+## Why Webscrape?
+
+- Because copy-paste is tedious
+
+- Because it's fast
+
+- Because you can automate it
+
+- Because it helps reduce/catch errors
+
+&lt;img src="./images/copypaste.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+## Webscraping: Broad Strokes
+
+- All websites are written in `HTML` (mostly)
+
+- `HTML` code is messy and difficult to parse manually
+
+- We will use R to 
+   - read the `HTML` (or other) code 
+   - clean it up to extract the data we need
+
+- Need only a very rudimentary understanding of `HTML`
+
+---
+## Webscraping with `rvest`: Step-by-Step Start Guide
+
+Install all tidyverse packages:
+
+```r
+# check if you already have it
+library(tidyverse)
+library(magrittr)
+library(rvest)
+# if not:
+install.packages("tidyverse")
+library(tidyverse) # only calls the "core" of tidyverse
+```
+
+---
+
+## Step 1: What Website Are You Scraping?
+
+
+```r
+# character variable containing the url you want to scrape
+myurl&lt;-"https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)"
+```
+
+---
+
+## Step 2: Read `HTML` into R
+
+- `HTML` is HyperText Markup Language. 
+
+- Go to any [website](https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal), right click, click "View Page Source" to see the HTML 
+
+
+```r
+library(rvest)
+library(tidyverse)
+library(magrittr)
+myhtml &lt;- read_html(myurl)
+myhtml
+```
+
+```
+## {html_document}
+## &lt;html class="client-nojs" lang="en" dir="ltr"&gt;
+## [1] &lt;head&gt;\n&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] &lt;body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-e ...
+```
+---
+
+## Step 3: Where in the HTML Code Are Your Data?
+
+- Need to find your data within the `myhtml` object. 
+
+- In `HTML`, all objects, such as tables, paragraphs, hyperlinks, and headings, are inside "tags" that are surrounded by &lt;&gt; symbols
+
+- Examples of tags: 
+
+    - `&lt;p&gt;` This is a paragraph.`&lt;/p&gt;`
+    - `&lt;h1&gt;` This is a heading. `&lt;/h1&gt;`
+    - `&lt;a&gt;` This is a link. `&lt;/a&gt;`
+    - `&lt;li&gt;` item in a list `&lt;/li&gt;`
+    - `&lt;table&gt;`This is a table. `&lt;/table&gt;`
+
+- Can use [Selector Gadget](http://selectorgadget.com/) to find the exact location. Enter `vignette("selectorgadget")` for an overview. 
+
+- Can also skim through the raw html code looking for possible tags.
+
+- For more on HTML, check out the [W3schools' tutorial](http://www.w3schools.com/html/html_intro.asp) 
+
+- You don't need to be an expert in HTML to webscrape with `rvest`!
+
+---
+
+## Step 4: 
+
+Give HTML tags into html_nodes() to extract your data of interest. Once you got the content of what you are looking for, use html_text to extract text, html_table to get a table 
+
+
+```r
+mytable&lt;-html_nodes(myhtml, "table") %&gt;%  #Gets everything in the element
+  html_table(fill=TRUE) #Convert to an R table, fill=TRUE is necessary when the website has multiple tables
+mytable&lt;-mytable %&gt;% extract2(3) #since the website has multiple tables, we need to extract the 3rd one.
+
+
+#Or you can combine the operations into a pipe:
+mytable&lt;-read_html(myurl) %&gt;% html_nodes("table") %&gt;% html_table(fill=TRUE)  %&gt;% extract2(3)
+```
+
+---
+
+## Step 5: Save and Clean the Data
+
+- You may want to remove all columns except Country and GDP.
+    
+    + Use `select` from `tidyverse` to select these columns
+
+- You may want to delete any extra rows
+
+   + Use `slice` to select the rows you need.
+   
+- You may want to clean up country names by removing any unnecessary symbols (e.g. [])
+
+   + Use `mutate` and `str_extract`
+   
+- Finally, we need to convert GDP to a numeric variable 
+
+   + Use `parse_number`
+   
+   
+---
+## Step 5: Save and Clean the Data 
+
+
+```r
+library(stringr)
+library(magrittr)
+mytable&lt;-read_html(myurl) %&gt;% 
+  html_nodes("table") %&gt;% 
+  html_table(fill=TRUE)  %&gt;% 
+  extract2(3) %&gt;% #our table is actually nested within a list element [[]]
+  select(Country=1, Year=4, GDP=3) %&gt;% 
+  slice(3:214) %&gt;% 
+  mutate( Year=str_remove(Year, ".*\\]"), #remove everything before the ]
+          GDP=str_remove(GDP, ".*\\]"),GDP=parse_number(GDP), Year=parse_number(Year))
+```
+
+---
+## Your Turn (5 min)
+
+- Follow the same steps to scrape the Wikipedia table of [foreign direct investments](https://en.wikipedia.org/wiki/List_of_countries_by_received_FDI)
+
+- Clean up the output the best you can. Feel free to consult the [`stringr` cheatsheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf)
+
+
+
+---
+## Example 2
+
+- We will scrape the 2020 US Presidential Election returns for the [state of Maryland](https://elections.maryland.gov/elections/2020/results/general/gen_detail_results_2020_4_BOT001-.html)
+
+- Then we will select county, and the votes for just the two major candidates, remove the total, and convert the votes to numeric values.
+
+
+
+```r
+myurl&lt;-"https://elections.maryland.gov/elections/2020/results/general/gen_detail_results_2020_4_BOT001-.html"
+pres&lt;-read_html(myurl) %&gt;% html_nodes("table") %&gt;% html_table(fill=TRUE) %&gt;% extract2(2) %&gt;% 
+  select(County=Jurisdiction, Biden20=contains("Biden"), Trump20=contains("Trump")) %&gt;% 
+  filter(str_detect(County, "Total", negate=TRUE)) %&gt;% 
+  mutate(Biden20=parse_number(Biden20), Trump20=parse_number(Trump20))
+```
+
+---
+## Your Turn (5 min)
+
+- Follow the same steps to scrape the 2016 US Presidential returns by county for the state of Maryland.
+
+- Clean up the results
+
+
+
+---
+## Challenge Yourself
+
+1. Follow the steps learned in class to scrape the names, ridings, and party of the current Ontario MPPs from [https://www.ola.org/en/members/current](https://www.ola.org/en/members/current).
+
+2. Extract the links to each individual MPP website and use it to get a list of their email addresses.
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

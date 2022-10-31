@@ -1,0 +1,275 @@
+---
+title: "POL 304: Using Data to Understand Politics and Society"
+subtitle: Web-Scraping
+author: "Olga Chyzh [www.olgachyzh.com]"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+exclude: true
+editor_options:
+  chunk_output_type: console
+---
+
+```{r  setup, message=FALSE, warning=FALSE, include=FALSE}
+options(
+  htmltools.dir.version = FALSE, # for blogdown
+  width = 80,
+  tibble.width = 80
+)
+
+knitr::opts_chunk$set(
+  fig.align = "center",  warning=FALSE, message=FALSE
+)
+
+```
+
+## Outline
+
+- What is webscraping?
+
+- Webscraping using `rvest`
+
+- Examples
+    
+    + GDP form Wikipedia
+
+    + 2020 US election returns
+    
+- Cleaning the data with `tidyverse`
+
+
+---
+
+## What is Webscraping?
+
+- Extract data from websites 
+
+    + Tables
+    
+    + Links to other websites
+    
+    + Text
+
+```{r echo=FALSE, out.width='100%', fig.show='hold', fig.align='default'}
+knitr::include_graphics('./images/USHouse.png', auto_pdf = FALSE)
+```    
+
+---
+## Why Webscrape?
+
+- Because copy-paste is tedious
+
+- Because it's fast
+
+- Because you can automate it
+
+- Because it helps reduce/catch errors
+
+```{r echo=FALSE, out.width='50%'}
+knitr::include_graphics("./images/copypaste.png", auto_pdf = FALSE)
+```
+
+---
+## Webscraping: Broad Strokes
+
+- All websites are written in `HTML` (mostly)
+
+- `HTML` code is messy and difficult to parse manually
+
+- We will use R to 
+   - read the `HTML` (or other) code 
+   - clean it up to extract the data we need
+
+- Need only a very rudimentary understanding of `HTML`
+
+---
+## Webscraping with `rvest`: Step-by-Step Start Guide
+
+Install all tidyverse packages:
+```{r gettv, echo = T, eval = FALSE}
+# check if you already have it
+library(tidyverse)
+library(magrittr)
+library(rvest)
+# if not:
+install.packages("tidyverse")
+library(tidyverse) # only calls the "core" of tidyverse
+
+```
+
+---
+
+## Step 1: What Website Are You Scraping?
+
+```{r }
+# character variable containing the url you want to scrape
+myurl<-"https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)"
+
+```
+
+---
+
+## Step 2: Read `HTML` into R
+
+- `HTML` is HyperText Markup Language. 
+
+- Go to any [website](https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal), right click, click "View Page Source" to see the HTML 
+
+```{r gethtml, message=FALSE}
+library(rvest)
+library(tidyverse)
+library(magrittr)
+myhtml <- read_html(myurl)
+myhtml
+
+```
+---
+
+## Step 3: Where in the HTML Code Are Your Data?
+
+- Need to find your data within the `myhtml` object. 
+
+- In `HTML`, all objects, such as tables, paragraphs, hyperlinks, and headings, are inside "tags" that are surrounded by <> symbols
+
+- Examples of tags: 
+
+    - `<p>` This is a paragraph.`</p>`
+    - `<h1>` This is a heading. `</h1>`
+    - `<a>` This is a link. `</a>`
+    - `<li>` item in a list `</li>`
+    - `<table>`This is a table. `</table>`
+
+- Can use [Selector Gadget](http://selectorgadget.com/) to find the exact location. Enter `vignette("selectorgadget")` for an overview. 
+
+- Can also skim through the raw html code looking for possible tags.
+
+- For more on HTML, check out the [W3schools' tutorial](http://www.w3schools.com/html/html_intro.asp) 
+
+- You don't need to be an expert in HTML to webscrape with `rvest`!
+
+---
+
+## Step 4: 
+
+Give HTML tags into html_nodes() to extract your data of interest. Once you got the content of what you are looking for, use html_text to extract text, html_table to get a table 
+
+```{r getdesc}
+mytable<-html_nodes(myhtml, "table") %>%  #Gets everything in the element
+  html_table(fill=TRUE) #Convert to an R table, fill=TRUE is necessary when the website has multiple tables
+mytable<-mytable %>% extract2(3) #since the website has multiple tables, we need to extract the 3rd one.
+
+
+#Or you can combine the operations into a pipe:
+mytable<-read_html(myurl) %>% html_nodes("table") %>% html_table(fill=TRUE)  %>% extract2(3)
+
+```
+
+---
+
+## Step 5: Save and Clean the Data
+
+- You may want to remove all columns except Country and GDP.
+    
+    + Use `select` from `tidyverse` to select these columns
+
+- You may want to delete any extra rows
+
+   + Use `slice` to select the rows you need.
+   
+- You may want to clean up country names by removing any unnecessary symbols (e.g. [])
+
+   + Use `mutate` and `str_extract`
+   
+- Finally, we need to convert GDP to a numeric variable 
+
+   + Use `parse_number`
+   
+   
+---
+## Step 5: Save and Clean the Data 
+
+```{r savetidy}
+library(stringr)
+library(magrittr)
+mytable<-read_html(myurl) %>% 
+  html_nodes("table") %>% 
+  html_table(fill=TRUE)  %>% 
+  extract2(3) %>% #our table is actually nested within a list element [[]]
+  select(Country=1, Year=4, GDP=3) %>% 
+  slice(3:214) %>% 
+  mutate( Year=str_remove(Year, ".*\\]"), #remove everything before the ]
+          GDP=str_remove(GDP, ".*\\]"),GDP=parse_number(GDP), Year=parse_number(Year))
+
+```
+
+---
+## Your Turn (5 min)
+
+- Follow the same steps to scrape the Wikipedia table of [foreign direct investments](https://en.wikipedia.org/wiki/List_of_countries_by_received_FDI)
+
+- Clean up the output the best you can. Feel free to consult the [`stringr` cheatsheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf)
+
+```{r, echo=F, eval=F}
+myurl<-"https://en.wikipedia.org/wiki/List_of_countries_by_received_FDI"
+mytable<-read_html(myurl) %>% 
+  html_nodes("table") %>% 
+  html_table(fill=TRUE) %>%
+   extract2(2) %>%
+  select(Country, FDI=3) %>% 
+  mutate(FDI=parse_number(FDI))
+```
+
+---
+## Example 2
+
+- We will scrape the 2020 US Presidential Election returns for the [state of Maryland](https://elections.maryland.gov/elections/2020/results/general/gen_detail_results_2020_4_BOT001-.html)
+
+- Then we will select county, and the votes for just the two major candidates, remove the total, and convert the votes to numeric values.
+
+
+```{r}
+myurl<-"https://elections.maryland.gov/elections/2020/results/general/gen_detail_results_2020_4_BOT001-.html"
+pres<-read_html(myurl) %>% html_nodes("table") %>% html_table(fill=TRUE) %>% extract2(2) %>% 
+  select(County=Jurisdiction, Biden20=contains("Biden"), Trump20=contains("Trump")) %>% 
+  filter(str_detect(County, "Total", negate=TRUE)) %>% 
+  mutate(Biden20=parse_number(Biden20), Trump20=parse_number(Trump20))
+
+```
+
+---
+## Your Turn (5 min)
+
+- Follow the same steps to scrape the 2016 US Presidential returns by county for the state of Maryland.
+
+- Clean up the results
+
+```{r, echo=F, eval=F}
+myurl<-"https://elections.maryland.gov/elections/2016/results/general/gen_detail_results_2016_4_BOT001-.html"
+pres16<-read_html(myurl) %>% html_nodes("table") %>% html_table(fill=TRUE) %>% extract2(1) %>% 
+  select(County=Jurisdiction, Clinton16=contains("Clinton"), Trump16=contains("Trump")) %>% 
+  filter(str_detect(County, "Total", negate=TRUE)) %>% 
+  mutate(Clinton16=parse_number(Clinton16), Trump16=parse_number(Trump16))
+```
+
+---
+## Challenge Yourself
+
+1. Follow the steps learned in class to scrape the names, ridings, and party of the current Ontario MPPs from [https://www.ola.org/en/members/current](https://www.ola.org/en/members/current).
+
+2. Extract the links to each individual MPP website and use it to get a list of their email addresses.
+
+```{r, echo=F, eval=F}
+mpps<-read_html("https://www.ola.org/en/members/current") %>% html_nodes("table") %>% html_table(fill=TRUE) %>% extract2(1)
+
+mpp_links<-read_html("https://www.ola.org/en/members/current") %>% html_nodes("table") %>% html_nodes("tr")  %>% html_nodes("a")  %>% html_attr("href") 
+mpp_links<-mpp_links[4:127]
+
+mpp1<-read_html(paste0("https://www.ola.org/",mpp_links[1])) %>% html_nodes(".field__item") %>% html_nodes("a")%>% html_attr("href")   
+mpp1[2]
+
+```
+
