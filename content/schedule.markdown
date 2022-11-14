@@ -92,6 +92,17 @@ All the class materials will be posted/updated here.
           </dl>
         </td>
       </tr>
+      <tr>
+        <td>Nov 14</td>
+        <td>Web-  <br>
+         Scraping </td>
+        <td>
+          <dl>
+          <dd><a href="../materials/09_bigdata.html" target=_blank> big data </a>| <a href="../materials/data/GTD_data_small.csv" target=_blank> practice data </a>| <a href="../materials/data/GTD Codebook.pdf" target=_blank> data codebook </a>
+          </dd>
+          </dl>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
