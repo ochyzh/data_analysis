@@ -103,6 +103,17 @@ All the class materials will be posted/updated here.
           </dl>
         </td>
       </tr>
+      <tr>
+        <td>Nov 21</td>
+        <td>Network <br>
+         Analysis </td>
+        <td>
+          <dl>
+          <dd><a href="../materials/10_networks.html" target=_blank> network analysis </a>
+          </dd>
+          </dl>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
