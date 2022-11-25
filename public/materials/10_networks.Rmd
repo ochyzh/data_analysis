@@ -116,7 +116,7 @@ plot(g)
 
 }
 
-sim_spread(g, "6")
+sim_spread(g, "12")
 ```
 
 ---

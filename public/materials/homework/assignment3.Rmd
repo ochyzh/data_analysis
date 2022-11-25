@@ -19,10 +19,14 @@ For this assignment, you will implement the research design that you proposed in
 
 7. Data [100 words]: **You must use at least one of the tools learned in class to test your hypothesis. Explicitly state which tool(s) you are using.** Describe the data will you use to answer your question.  Where will you obtain the data (e.g., website)? What is the unit of analysis? How will you measure your independent and dependent variable?
 
+
+
 8. Download/save the data. Clean up the data and perform your analysis. You may perform your analysis using any software you are comfortable with. R is not required.
 
 9. Results [100 words plus any graphs, figures]: **Note: all figures and tables must be formatted, do not include code or software output. All tables and figures must be described in text.** Present the results of your analysis (e.g., tables, graphs). Describe the results.
 
-10. Did you get the answer you expected? Why or why not? [100 words]
+11. Did you get the answer you expected? Why or why not? [100 words]
+
+12. Endogeneity [200 words]: What is your strategy for ruling out confounders, especially reverse causality? How does your research design help address the issue of endogeneity, that is, that the observations are not randomly assigned into the treatment and control groups? Does your data meet the assumptions of the chosen design? Describe the results of any assumption checks that you performed.
 
 Note: The word limits indicate strict maxima (any extra words will not be treated as a part of your answer). You must submit (1) the data you used (a zip file if large) (3) a file that contains detailed answers to each of the above question (MS Word, pdf, etc). Please put the word counts next to each answer.
