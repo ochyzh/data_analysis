@@ -114,6 +114,17 @@ All the class materials will be posted/updated here.
           </dl>
         </td>
       </tr>
+      <tr>
+        <td>Nov 28</td>
+        <td>Spatial <br>
+         Analysis </td>
+        <td>
+          <dl>
+          <dd><a href="../materials/11_maps.html" target=_blank> spatial analysis, maps </a>
+          </dd>
+          </dl>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
