@@ -125,6 +125,17 @@ All the class materials will be posted/updated here.
           </dl>
         </td>
       </tr>
+      <tr>
+        <td>Dec 5</td>
+        <td>Instrumental  <br>
+         Variables </td>
+        <td>
+          <dl>
+          <dd><a href="../materials/12_instruments.html" target=_blank> instruments </a>
+          </dd>
+          </dl>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

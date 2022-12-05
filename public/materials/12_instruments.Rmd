@@ -1,0 +1,264 @@
+---
+title: "POL 304: Using Data to Understand Politics and Society"
+subtitle: Instrumental and Proxy Variables
+author: "Olga Chyzh [www.olgachyzh.com]"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+exclude: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r  setup, message=FALSE, warning=FALSE, include=FALSE}
+options(
+  htmltools.dir.version = FALSE, # for blogdown
+  width = 80,
+  tibble.width = 80
+)
+
+knitr::opts_chunk$set(
+  fig.align = "center",  warning=FALSE, message=FALSE
+)
+
+library(kableExtra)
+library(magrittr)
+library(tidyverse)
+
+#devtools::install_github("hadley/emo")
+library(emo)
+
+```
+
+## Modeling the Effect of Unobservable Variables
+
+- Many social science concepts are difficult or impossible to measure
+
+    - norms, rule of law, state capacity, resolve, costs of voting
+    
+- Two distinct approaches:
+
+    - Can use a *proxy* variable in lieu of the actual variable of interest
+
+    - Can use an *instrument* variable to help isolate the true effect of our variable (when our variable is endogenous, i. e. correlated with an *unobserved* variable that also affects *y*)
+
+---
+
+## Unobserved Explanatory Variables
+
+Consider the following model of $log(wage)$:
+
+$$
+log(wage) =\beta_0+\beta_1educ+\beta_2exper+\beta_3abil+u
+$$
+- Must account for *ability*, which is an unobserved variable.
+
+- Since *ability* is likely correlated with *education* and *experience*, excluding it will lead to biased estimates of $\beta_1$ and $\beta_2$.
+
+- It may be possible to avoid omitted variable bias by using a *proxy* variable.
+
+- A *proxy* variable is a variable that is correlated with the unobserved variable (e.g. *IQ* is a proxy for *ability*)
+
+
+---
+## Assumptions
+ 
+- The *proxy* variable does not affect $y$, it has a correlation with $y$ solely due to its correlation with the unobserved variable for which it is a proxy for.
+
+    - In the above example, IQ only affect wage because IQ is a proxy for ability.  IQ does not have its own (separate from its correlation with ability) effect on wage.
+
+- The *proxy* variable captures all the correlation between the variable it stands for and other variables that affect *y*. 
+    - In the above example, ability is only correlated with experience and education due to IQ. Once IQ is accounted for, ability is not correlated with experience or education.
+
+---
+
+## Your Turn
+
+Discuss whether the assumptions from the previous slide hold for each of these scenarios:
+
+1. Suppose we want to model trade between pairs of countries as a function of each country's GDP and population, as well as the distance between them. The problem is that GDP data are not available prior to 1950, so we decided to use country's energy consumption as a proxy variable. 
+
+2. Suppose we want to model an individual's decision to vote in an election as a function of their income, education, age, and the opportunity cost of time.  Unfortunately, we do not have a good measure of the opportunity cost of time, so we proxy it by the quality of Monday night football game the night before the election.
+
+???
+Scenario 1:
+1. Energy consumption does not affect trade.
+2. GDP is uncorrelated with population, once we partial out the correlation between energy consumption and population. 
+
+Scenario 2:
+1. Football does not affect vote and is not correlated with the unobserved variables that affect vote.
+2. Opportunity cost of time is uncorrelated with age, income, and education, once we partial out the correlation between the quality of Monday night game and these variables.  
+
+
+---
+## Assigned Reading
+
+- Matthew Potoski and R Urbatsch.  2017. "Entertainment and the opportunity cost of civic
+participation: Monday night football game quality suppresses turnout in US elections."
+*The Journal of Politics*, 79(2):424--438.
+
+- Emily Hencken Ritter and Courtenay R Conrad. 2016. "Preventing and responding to dissent:
+The observational challenges of explaining strategic repression." *American Political Science Review*, 110(1):85--99.
+
+---
+## Potoski and Urbatsch (2017)
+
+- Why do people vote? What are the costs and benefits of voting?
+
+- How do Monday Night Football games alter the costs and benefits of voting? What is the causal mechanism?
+
+- How do the authors measure the quality of the game?
+
+- Why does it matter if a local team plays in a pre-election game? How do the authors measure this?  Why do the authors say that it is a noisy measure?
+
+???
+- The quality of the game is an index that combines three measures—team records, point spread, and
+over/under
+
+- Anyone from the same census-defined metropolitan area as the playing teams to be “local.”
+
+---
+## Potoski and Urbatsch (2017)
+
+- How does interest in politics interact with the opportunity costs of voting? Why? How do the authors measure interest in politics? Why do they need to use several alternative measures?
+
+- How does the start time of the game affect turnout?
+
+- What are the placebo tests that the authors use?  Why do they need these? What do they show?
+
+
+???
+
+- Interest in politics responses may be subject to social-desirability bias and is unavailable for a few
+years of the NES surveys. An alternative measure of political interest, sidestepping
+these drawbacks of the direct measure, is intensity of partisan
+identification.
+
+- Placebo tests: whether MNF game quality on the evening before the election
+influences either early/absentee voting or voter registration
+in states that do not allow it.
+
+
+---
+## MNF as a Proxy Variable
+
+$$Turnout=\beta_0+\beta_1Benefit+\beta_2Cost+u,$$
+where $\beta_0$, $\beta_1$, and $\beta_2$ are population parameters, and $u$ is the random error.
+
+- MNF game quality is a proxy for cost if two assumptions are met:
+
+    - MNF game quality only affects voting in as much as it increases the opportunity cost of time.
+    
+    - Opportunity cost of time is uncorrelated with other variables that are included in the model, once we account for the quality of the pre-election game.
+---
+
+## Ritter and Conrad (2016)
+
+- What do the authors mean when they say that the relationship between repression and dissent is endogenous? 
+
+- What are the two strategic censoring processes that result in the observed outcomes of dissent and repression? 
+
+    - What happens when the government engages in preventive repression? What happens when it does not?
+
+???
+- We argue that the effect of dissent on repression is a function of two strategic censoring processes.
+Governments may engage in preventive repression—for example, curfews and prohibitions
+on assembly—to undermine mobilization; dissidents that mobilize despite obstruction
+are systematically different than groups thwarted by preventive actions. Because the government’s
+best response to resolute groups is unclear given the failure of preventive action, actualized
+dissent in this context does not meaningfully predict responsive repression. Put differently,
+when authorities repress in expectation of dissent, most dissent will not occur, and that which
+does will not be observably related to subsequent repression. In the absence of preventive repression,
+however, dissidents are not tested by direct government intervention, but they may
+self-censor in expectation of a repressive response. Groups that dissent in this context represent
+a potentially conquerable threat to authorities. As such, governments who did not engage in ex
+ante repression will be quite likely to do it ex post (p. 3).
+---
+## Ritter and Conrad (2016)
+
+- Why is rainfall correlated with dissent? 
+
+- Does rainfall affect repression?
+
+- What is the Law of Coercive Responsiveness? 
+
+- Why do governments repress?  
+
+- What are the alternatives to repression? 
+???
+
+
+- The idea that authorities use repressive tactics to control dissent is so widely accepted
+that it has been referred to as the “Law of Coercive Responsiveness”
+
+---
+## Ritter and Conrad (2016)
+
+- How does repression prevent dissent?
+
+- Why do some groups dissent despite the *expectation* of repression? Why do some groups dissent despite repression?
+
+- If preventive repression deters some dissent, why don't governments always engage in preventive repression?
+
+- Why do the authors use a natural log of daily rainfall rather than rainfall deviations from the norm? Why do they include an additional instrument of percent of annual rainfall the daily amount represents?
+
+???
+
+
+- Repressive practices can damage dissidents’ capacity to mount a coercive threat: restrictions make it difficult
+to assemble groups or plan dissenting actions. Curfews, surveillance, limits
+on assembly, preventive arrests of leaders, and infiltration restrict and cripple dissent activities.
+Rights violations can also cow citizens into quiescence by attacking their willingness to challenge
+the state; states use physical integrity violations such as disappearances, targeted arrests,
+violent policing, or torture to make would-be dissidents fear joining a movement and/or challenging
+the government.
+
+---
+## An Endogenous Independent Variable
+
+- Suppose we want to know the effect of X on Y , but we think that Y may also, in part, determine X;
+
+- In this case, we say that X and Y are endogenous;
+
+- Very common in social sciences;
+
+- Examples: Conflict and alliances, armes races, democracy, trade; supply and demand; domestic institutions (political, legal, economic) and dissent.
+
+---
+
+## Why Do Governments Repress?
+
+$$Repression=\beta_0+\beta_1Dissent+u,$$
+
+
+where $\beta_0$, and $\beta_1$ are population parameters to estimate, and $u$ is the random error.
+
+- Problem: *Dissent* is correlated with an unobservable variable that affects repression, *Protesters' Resolve*, which means we cannot obtain an unbiased estimate of $\beta_1$.
+
+- Solution: Use an instrumental variable, .  
+
+    - Because *Rainfall* correlates with *Dissent*, but does not correlate with *Resolve*, we can estimate the effect of *Dissent* on *Repression* in two stages. 
+
+
+---
+## The Two-Stage Approach:
+    
+[1] Regress *Dissent* on *Rainfall*.
+
+$$Dissent=\delta_0+\delta_1Rain+u,$$
+
+[2] Regress $Repression$ on the fitted values from the first equation:
+
+$$Repression=\beta_0+\beta_1\widehat{Dissent}+u$$
+
+
+
+
+
+
+
+
