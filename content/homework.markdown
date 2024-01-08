@@ -12,7 +12,7 @@ title: Homework Assignments
     </thead>
     <tbody>
       <tr>
-        <td>\Jan 26</td>
+        <td>Jan 26</td>
         <td>
           <dl>
           <dd><a href="../materials/homework/assignment1.html" target=_blank>Assignment 1</a> | <a href="../materials/homework/chechen.csv" target=_blank> data </a>
