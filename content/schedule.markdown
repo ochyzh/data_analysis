@@ -16,7 +16,7 @@ All the class materials will be posted/updated here.
     </thead>
     <tbody>
       <tr>
-        <td>Sep 12</td>
+        <td>Jan 8</td>
         <td>Introduction <br>
          to Causality</td>
         <td>
@@ -27,7 +27,7 @@ All the class materials will be posted/updated here.
         </td>
       </tr>
       <tr>
-        <td>Sep 19</td>
+        <td>Jan 15</td>
         <td>Natural <br>
          Experiments</td>
         <td>
@@ -38,7 +38,7 @@ All the class materials will be posted/updated here.
         </td>
       </tr>
       <tr>
-        <td>Sep 26</td>
+        <td>Jan 22</td>
         <td>Measurement <br>
          Bias</td>
         <td>
@@ -49,7 +49,7 @@ All the class materials will be posted/updated here.
         </td>
       </tr>
       <tr>
-        <td>Oct 3</td>
+        <td>Jan 29</td>
         <td>Linear  <br>
          Regression</td>
         <td>
@@ -60,7 +60,7 @@ All the class materials will be posted/updated here.
         </td>
       </tr>
       <tr>
-        <td>Oct 17</td>
+        <td>Feb 5</td>
         <td>Regression  <br>
          Discontinuity </td>
         <td>
@@ -71,7 +71,18 @@ All the class materials will be posted/updated here.
         </td>
       </tr>
       <tr>
-        <td>Oct 24</td>
+        <td>Feb 12</td>
+        <td>Research  <br>
+         Design </td>
+        <td>
+          <dl>
+          <dd><a href="../materials/research_design.html" target=_blank> research_design </a>
+          </dd>
+          </dl>
+        </td>
+      </tr>
+      <tr>
+        <td>Feb 19</td>
         <td>Text  <br>
          as Data </td>
         <td>
@@ -82,7 +93,7 @@ All the class materials will be posted/updated here.
         </td>
       </tr>
       <tr>
-        <td>Oct 31</td>
+        <td>Mar 4</td>
         <td>Web-  <br>
          Scraping </td>
         <td>
@@ -93,7 +104,7 @@ All the class materials will be posted/updated here.
         </td>
       </tr>
       <tr>
-        <td>Nov 14</td>
+        <td>Mar 11</td>
         <td>Big  <br>
          Data </td>
         <td>
@@ -104,7 +115,7 @@ All the class materials will be posted/updated here.
         </td>
       </tr>
       <tr>
-        <td>Nov 21</td>
+        <td>Mar 18</td>
         <td>Network <br>
          Analysis </td>
         <td>
@@ -115,7 +126,7 @@ All the class materials will be posted/updated here.
         </td>
       </tr>
       <tr>
-        <td>Nov 28</td>
+        <td>Mar 25</td>
         <td>Spatial <br>
          Analysis </td>
         <td>
@@ -126,7 +137,7 @@ All the class materials will be posted/updated here.
         </td>
       </tr>
       <tr>
-        <td>Dec 5</td>
+        <td>April 1</td>
         <td>Instrumental  <br>
          Variables </td>
         <td>
@@ -136,6 +147,6 @@ All the class materials will be posted/updated here.
           </dl>
         </td>
       </tr>
-    </tbody>
+      </tbody>
   </table>
 </div>
