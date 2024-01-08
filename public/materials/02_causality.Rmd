@@ -297,20 +297,20 @@ rosca$treatment[rosca$safe_box == 1] <- "safebox"
 rosca$treatment[rosca$locked_box == 1] <- "lockbox"
 rosca$treatment <- as.factor(rosca$treatment)
 rosca2 <- rosca[rosca$has_followup2 == 1, ]
-mytable<-tapply(rosca2$bg_female, rosca2$treatment, mean)
+mytable<-round(tapply(rosca2$bg_female, rosca2$treatment, mean),2)
 knitr::kable(t(mytable))
 
 ```
 
 .center[Age]
 ```{r, echo=F}
-mytable<-tapply(rosca2$bg_b1_age, rosca2$treatment, mean)
+mytable<-round(tapply(rosca2$bg_b1_age, rosca2$treatment, mean),2)
 knitr::kable(t(mytable))
 ```
 
 .center[Marital Status]
 ```{r, echo=F}
-mytable<-tapply(rosca2$bg_married, rosca2$treatment, mean)
+mytable<-round(tapply(rosca2$bg_married, rosca2$treatment, mean),2)
 knitr::kable(t(mytable))
 ```
 
@@ -322,7 +322,7 @@ knitr::kable(t(mytable))
 .center[Married Women Only]
 ```{r, echo=F}
 rosca2.married <- subset(rosca2, subset = (bg_married == 1) & (rosca2$bg_female == 1))
-mytable <-tapply(rosca2.married$fol2_amtinvest, rosca2.married$treatment, mean)
+mytable <-round(tapply(rosca2.married$fol2_amtinvest, rosca2.married$treatment, mean),2)
 knitr::kable(t(mytable))
 ```
 
@@ -331,7 +331,7 @@ knitr::kable(t(mytable))
 
 ```{r, echo=F}
 rosca2.married <- subset(rosca2, subset = (bg_married == 0) & (rosca2$bg_female == 1))
-mytable <-tapply(rosca2.married$fol2_amtinvest, rosca2.married$treatment, mean)
+mytable <-round(tapply(rosca2.married$fol2_amtinvest, rosca2.married$treatment, mean),2)
 knitr::kable(t(mytable))
 ```
 
@@ -345,6 +345,19 @@ knitr::kable(t(mytable))
 
 - Concepts: unit of analysis, treatment/control variable, treatment/control group, outcome variable, counterfactual, potential outcomes, causal effect, confounders, matching, selection bias, random assignment, SATE, randomized experiment, placebo effect, hawthorn effect, attrition/drop-out rate, internal and external validity, balance, subset analysis.
 
+
+
+---
+## Review Questions
+
+1. What was the goal of the cereal example? What did it demonstrate?
+
+2. How does randomization account for confounders? What is the exact mechanism?
+
+3. What is the difference between a natural experiment (quasi-experiment) and a randomized controlled trials?
+
+4. What is selection effect and how do randomized controlled trials rule it out?
+
 ---
 ## Before Next Class
 
@@ -353,7 +366,5 @@ knitr::kable(t(mytable))
 - Complete assigned readings
 
 - Next Class: causality, experimental design, a two-sample t-test
-
-
 
 

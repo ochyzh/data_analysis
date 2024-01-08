@@ -91,21 +91,6 @@ Create a single variable `treatment` that takes the value `control` for observat
 ---
 ## Challenge Yourself
 
-- Run the code below to install the `qss-package` and `qss.student` packages that go with the textbook.
 
-```{r, echo=T, eval=F}
-library(devtools)
-devtools::install_github("kosukeimai/qss-package", build_vignettes = TRUE)
-devtools::install_github("conjugateprior/qss.student")
-library(qss)
-library(qss.student)
-```
-
-- Run the code below to access the files that go with today's lab. This will put the files into a folder named "health-savings" in the directory you specified in 1.
-
-```{r, echo=T, eval=F}
-get_pset("health-savings")
-```
-
-- Complete the problem set.
+- Complete the practice problem set posted on the course website.
 

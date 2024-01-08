@@ -37,9 +37,9 @@ library(magrittr)
 
 ## About me
 
-- Assistant Professor of Political Science, since Fall 2020
+- Associate Professor of Political Science, since Fall 2020
 
-- Previously an Assistant/Associate Professor of Political Science and Statistics at Iowa State University (2015-2020).
+- Previously Associate Professor of Political Science and Statistics at Iowa State University (2015-2020).
 
 - My research areas are network analysis, spatial statistics, substantive focus on non-state violent actors
 
