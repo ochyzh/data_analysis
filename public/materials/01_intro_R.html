@@ -4,7 +4,7 @@
     <title>POL 304: Using Data to Understand Politics and Society</title>
     <meta charset="utf-8" />
     <meta name="author" content="Olga Chyzh [www.olgachyzh.com]" />
-    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.25/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
@@ -46,7 +46,7 @@ class: center, middle, inverse, title-slide
 
 
 ```r
-rosca&lt;-read.csv('./data/rosca.csv', header=TRUE)
+rosca&lt;-read.csv('rosca.csv', header=TRUE)
 ```
 
 
@@ -100,25 +100,8 @@ Create a single variable `treatment` that takes the value `control` for observat
 ---
 ## Challenge Yourself
 
-- Run the code below to install the `qss-package` and `qss.student` packages that go with the textbook.
 
-
-```r
-library(devtools)
-devtools::install_github("kosukeimai/qss-package", build_vignettes = TRUE)
-devtools::install_github("conjugateprior/qss.student")
-library(qss)
-library(qss.student)
-```
-
-- Run the code below to access the files that go with today's lab. This will put the files into a folder named "health-savings" in the directory you specified in 1.
-
-
-```r
-get_pset("health-savings")
-```
-
-- Complete the problem set.
+- Complete the practice problem set posted on the course website.
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

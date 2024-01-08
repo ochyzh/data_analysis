@@ -39,11 +39,13 @@ knitr::include_graphics("images/set_dir.jpg")
 
 - To open `.csv` files, use `read.csv`
 
-```{r}
-rosca<-read.csv('./data/rosca.csv', header=TRUE)
+```{r, eval=F}
+rosca<-read.csv('rosca.csv', header=TRUE)
 ```
 
-
+```{r, eval=T, echo=F}
+rosca<-read.csv('./data/rosca.csv', header=TRUE)
+```
 ---
 ## Access/Create a New Variable
 
