@@ -12,7 +12,7 @@ title: Homework Assignments
     </thead>
     <tbody>
       <tr>
-        <td>Sep 30</td>
+        <td>\Jan 26</td>
         <td>
           <dl>
           <dd><a href="../materials/homework/assignment1.html" target=_blank>Assignment 1</a> | <a href="../materials/homework/chechen.csv" target=_blank> data </a>
@@ -21,7 +21,7 @@ title: Homework Assignments
         </td>
       </tr>
       <tr>
-        <td>Oct 28</td>
+        <td>Feb 9</td>
         <td>
           <dl>
           <dd><a href="../materials/homework/assignment2.html" target=_blank>Assignment 2</a>
@@ -30,7 +30,7 @@ title: Homework Assignments
         </td>
        </tr>
        <tr>
-        <td>Dec 7</td>
+        <td>April 5</td>
         <td>
           <dl>
           <dd><a href="../materials/homework/assignment3.html" target=_blank>Assignment 3</a>
