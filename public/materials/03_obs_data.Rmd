@@ -118,14 +118,14 @@ knitr::include_graphics("images/naming-shaming.png")
 ```{r, echo=F}
 library(qss)
 data(social)
-mytable<-tapply(social$primary2006, social$messages, mean)
+mytable<-round(tapply(social$primary2006, social$messages, mean),2)
 knitr::kable(t(mytable))
 ```
 
 .center[SATE for each group:]
 ```{r, echo=F}
-mytable<-tapply(social$primary2006, social$messages, mean)[-2] -
-mean(social$primary2006[social$messages == "Control"])
+mytable<-round(tapply(social$primary2006, social$messages, mean)[-2] -
+mean(social$primary2006[social$messages == "Control"]),2)
 knitr::kable(t(mytable))
 
 ```
@@ -134,7 +134,7 @@ knitr::kable(t(mytable))
 
 .center[Primary 2004 for each group:]
 ```{r, echo=F}
-mytable<-tapply(social$primary2004, social$messages, mean)
+mytable<-round(tapply(social$primary2004, social$messages, mean),2)
 knitr::kable(t(mytable))
 ```
 
