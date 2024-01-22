@@ -52,17 +52,6 @@ class: inverse, middle, center
 # Survey Sampling
 
 ---
-##  Support for Biden's Covid-19 Plan
-
-   | Favor|
----------------------------------------------|----
-Require vaccines for federal govt employees | 60% 
-Require companies with $\geq100$ employees to implement vaccine mandates | 58 
-Require healthcare facilities that receive Medicaid or Medicare money to implement vaccine mandates | 63 
-Require companies with $\geq100$ employees to provide paid time off for employees to get vaccinated | 68 
-
-Results for this Gallup poll are based on self-administered web surveys conducted Sept. 13-19, 2021, with a random sample of 4,034 adults, aged 18 and older, who are members of the Gallup Panel. Gallup uses probability-based, random sampling methods to recruit its Panel members.
----
 
 ## Problem
 
@@ -319,7 +308,7 @@ Sources of bias in survey sampling
 
 3. social desirability bias
 
-4. differential item functioning
+4. differential item functioning (e.g., culturally-driven diff in GRE scores)
 
 Survey methods for sensitive questions
 
@@ -391,7 +380,7 @@ ggplot(data=vig, aes(x=self))+geom_bar(aes(y=(..count..)/sum(..count..)))+facet_
 ---
 ## Data Exercise Cont'd
 
-- Which country's respondents seem to have a higher degree of political efficacy?  Does this seem plausible when Mexican citizens voted out out the Institutional Revolutionary Party (PRI) after more than 70 years or rule and Chinese citizens have not been able to vote in a fair election to date?
+- Which country's respondents seem to have a higher degree of political efficacy?  Does this seem plausible when Mexican citizens voted out the Institutional Revolutionary Party (PRI) after more than 70 years or rule and Chinese citizens have not been able to vote in a fair election to date?
 
 ---
 ## Vignettes
