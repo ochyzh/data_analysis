@@ -43,7 +43,7 @@ All the class materials will be posted/updated here.
          Bias</td>
         <td>
           <dl>
-          <dd><a href="../materials/04_measurement.html" target=_blank>measurement bias</a>| <a href="../materials/data/vignettes.csv" target=_blank> practice data</a>
+          <dd><a href="../materials/04_measurement.html" target=_blank>measurement bias</a>| <a href="../materials/data/vignettes.csv" target=_blank> practice data</a>|<a href="../materials/code from class /class3script.R" target=_blank> script from class </a>
           </dd>
           </dl>
         </td>
@@ -54,7 +54,7 @@ All the class materials will be posted/updated here.
          Regression</td>
         <td>
           <dl>
-          <dd><a href="../materials/05_regression.html" target=_blank>linear regression</a>| <a href="../materials/data/social.csv" target=_blank> practice data</a>
+          <dd><a href="../materials/05_regression.html" target=_blank>linear regression</a>| <a href="../materials/data/social.csv" target=_blank> practice data</a>|<a href="../materials/code from class /class4script.R" target=_blank> script from class </a>
           </dd>
           </dl>
         </td>
