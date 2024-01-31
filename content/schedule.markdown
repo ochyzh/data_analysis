@@ -21,7 +21,7 @@ All the class materials will be posted/updated here.
          to Causality</td>
         <td>
           <dl>
-          <dd><a href="../materials/01_intro.html" target=_blank>course intro & syllabus</a> | <a href="../materials/02_causality.html" target=_blank>intro to causality</a>| <a href="../materials/01_intro_R.html" target=_blank>intro to R</a> | <a href="../materials/data/rosca.csv" target=_blank> practice data</a> | <a href="../materials/problem sets/02_causality_problem_set.pdf" target=_blank> practice problem set</a>|<a href="../materials/code from class /class1script.R" target=_blank> script from class </a>
+          <dd><a href="../materials/01_intro.html" target=_blank>course intro & syllabus</a> | <a href="../materials/02_causality.html" target=_blank>intro to causality</a>| <a href="../materials/01_intro_R.html" target=_blank>intro to R</a> | <a href="../materials/data/rosca.csv" target=_blank> practice data</a> | <a href="../materials/problem sets/02_causality_problem_set.pdf" target=_blank> practice problem set</a>|<a href="../materials/code from class/class1script.R" target=_blank> script from class </a>
           </dd>
           </dl>
         </td>
@@ -32,7 +32,7 @@ All the class materials will be posted/updated here.
          Experiments</td>
         <td>
           <dl>
-          <dd><a href="../materials/03_obs_data.html" target=_blank>natural experiments</a>| <a href="../materials/data/hprice.csv" target=_blank> practice data</a>|<a href="../materials/code from class /class2script.R" target=_blank> script from class </a>
+          <dd><a href="../materials/03_obs_data.html" target=_blank>natural experiments</a>| <a href="../materials/data/hprice.csv" target=_blank> practice data</a>|<a href="../materials/code from class/class2script.R" target=_blank> script from class </a>
           </dd>
           </dl>
         </td>
@@ -43,7 +43,7 @@ All the class materials will be posted/updated here.
          Bias</td>
         <td>
           <dl>
-          <dd><a href="../materials/04_measurement.html" target=_blank>measurement bias</a>| <a href="../materials/data/vignettes.csv" target=_blank> practice data</a>|<a href="../materials/code from class /class3script.R" target=_blank> script from class </a>
+          <dd><a href="../materials/04_measurement.html" target=_blank>measurement bias</a>| <a href="../materials/data/vignettes.csv" target=_blank> practice data</a>|<a href="../materials/code from class/class3script.R" target=_blank> script from class </a>
           </dd>
           </dl>
         </td>
@@ -54,7 +54,7 @@ All the class materials will be posted/updated here.
          Regression</td>
         <td>
           <dl>
-          <dd><a href="../materials/05_regression.html" target=_blank>linear regression</a>| <a href="../materials/data/social.csv" target=_blank> practice data</a>|<a href="../materials/code from class /class4script.R" target=_blank> script from class </a>
+          <dd><a href="../materials/05_regression.html" target=_blank>linear regression</a>| <a href="../materials/data/social.csv" target=_blank> practice data</a>|<a href="../materials/code from class/class4script.R" target=_blank> script from class </a>
           </dd>
           </dl>
         </td>
