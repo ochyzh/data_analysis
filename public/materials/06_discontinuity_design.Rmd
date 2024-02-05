@@ -41,7 +41,7 @@ library(magrittr)
 
 - In observational data, treatment is not randomly assigned--there are many possible confounders.
 
-- We have discussed several research design to address this problem.
+- We have discussed several research designs to address this problem.
 
 - RD is another natural experiment design that helps account for confounders.
 
@@ -52,7 +52,7 @@ library(magrittr)
 
 --
 
-- Data on political candidates wealth at the time of death.
+- Data on political candidates' wealth at the time of death.
 
 - Subset data just to the close elections (Why?)
 
@@ -161,7 +161,7 @@ exp(13.1878) - exp(12.538)
 ---
 ## Assumption Check
 
-- Is the treatment assignment (whether a candidate wins of loses by a small margin) truly random?  If some candidates win systematically (e.g., election fraud), then this assumption is violated.
+- Is the treatment assignment (whether a candidate wins or loses by a small margin) truly random?  If some candidates win systematically (e.g., election fraud), then this assumption is violated.
 
 - One way to check is to see if there is a correlation in the margin of victory from one election to the next.
 
@@ -340,4 +340,22 @@ lm(literate91 ~ pscore, data = dta.above)
 
 1. Calculate the causal effect of government funding on poverty rate (`poverty91`).
 
+3. Make a scatterplot that shows p-score on the x-axis and poverty rate on the y-axis. Add two regression lines to the plot: one for the data below the cut-off and one above. Does the plot show support for the hypothesis that government funding improves poverty rates?
+
 2. What assumption has to hold in order to interpret this effect as causal? Check this assumption.
+
+```{r, eval=F, echo=F}
+library(ggplot2)
+ggplot()+ geom_point(aes(x=pscore, y=poverty91) , data=data[data$pscore >= -3 & data$pscore <=3,])+
+  geom_smooth(aes(x=pscore, y=poverty91) , data=data[data$pscore >= -3 & data$pscore <=0,], method=lm, se=FALSE)+
+  geom_smooth(aes(x=pscore, y=poverty91) , data=data[data$pscore > 0 & data$pscore <=3,], method=lm, se=FALSE)+
+  theme_bw()
+
+#Placebo check:
+ggplot()+ geom_point(aes(x=pscore, y=poverty80) , data=data[data$pscore >= -3 & data$pscore <=3,])+
+  geom_smooth(aes(x=pscore, y=poverty80) , data=data[data$pscore >= -3 & data$pscore <=0,], method=lm, se=FALSE)+
+  geom_smooth(aes(x=pscore, y=poverty80) , data=data[data$pscore > 0 & data$pscore <=3,], method=lm, se=FALSE)+
+  theme_bw()
+
+```
+
