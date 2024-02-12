@@ -76,7 +76,7 @@ All the class materials will be posted/updated here.
          Design </td>
         <td>
           <dl>
-          <dd><a href="../materials/research_design.html" target=_blank> research_design </a>
+          <dd><a href="../materials/07_research_design.html" target=_blank> research design </a>
           </dd>
           </dl>
         </td>
