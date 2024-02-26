@@ -32,6 +32,14 @@ knitr::opts_chunk$set(
 Assigned Reading: Jodie Archer and Matthew L. Jockers. The Bestseller Code: Anatomy of the Blockbuster
 Novel. St. Martin's Publishing Group, 2016. Chapter 4.
 
+---
+## Text Analysis
+
+- What is the book that everybody is reading now? 
+
+---
+## Text Analysis
+
 - What is the "linguistic DNA"? What features of writing make up this DNA, according to the chapter?  Are there other features that must be accounted for?
 
 - What aspects of text are analyzed by stylometrists?
@@ -43,7 +51,6 @@ Novel. St. Martin's Publishing Group, 2016. Chapter 4.
 - Why are women-authors more likely  to use the "best-seller" writing style?
 
 - How does the model work?
-
 ---
 
 ## Cont'd
@@ -96,7 +103,7 @@ knitr::include_graphics("./images/utf8.png")
 ## Using `stylo`
 
 ```{r, echo=T,  eval=F}
-#install.packages("stylo")
+install.packages("stylo")
 library(stylo)
 myanalysis<-stylo()
 
