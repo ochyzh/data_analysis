@@ -239,6 +239,11 @@ knitr::include_graphics("./images/output2.png")
 
 - Who is more likely to be the author of passage x?
 
+---
+## Your Turn
+
+- Set up the data and make the distance table for Bush's and Obama's speeches. What speeches will you use in the training set? What does this distance table show?
+
 
 
 
