@@ -65,7 +65,7 @@ All the class materials will be posted/updated here.
          Discontinuity </td>
         <td>
           <dl>
-          <dd><a href="../materials/06_discontinuity_design.html" target=_blank>discontinuity design</a>| <a href="../materials/data/MPs.csv" target=_blank> practice data 1 </a>| <a href="../materials/data/transfer.csv" target=_blank> practice data 2 </a>
+          <dd><a href="../materials/06_discontinuity_design.html" target=_blank>discontinuity design</a>| <a href="../materials/data/MPs.csv" target=_blank> practice data 1 </a>| <a href="../materials/data/transfer.csv" target=_blank> practice data 2 </a> |<a href="../materials/code from class/class5script.R" target=_blank> script from class </a>
           </dd>
           </dl>
         </td>
@@ -87,7 +87,7 @@ All the class materials will be posted/updated here.
          as Data </td>
         <td>
           <dl>
-          <dd><a href="../materials/07_text_as_data.html" target=_blank> text analysis </a>| <a href="../materials/data/example1.zip" target=_blank> practice data 1 </a>| <a href="../materials/data/example2.zip" target=_blank> practice data 2 </a>
+          <dd><a href="../materials/07_text_as_data.html" target=_blank> text analysis </a>| <a href="../materials/data/example1.zip" target=_blank> practice data 1 </a>| <a href="../materials/data/example2.zip" target=_blank> practice data 2 </a> |<a href="../materials/code from class/class7script.R" target=_blank> script from class </a>
           </dd>
           </dl>
         </td>
@@ -98,7 +98,7 @@ All the class materials will be posted/updated here.
          Scraping </td>
         <td>
           <dl>
-          <dd><a href="../materials/08_webscraping.html" target=_blank> web-scraping </a>
+          <dd><a href="../materials/08_webscraping.html" target=_blank> web-scraping </a> |<a href="../materials/code from class/class8script.R" target=_blank> script from class </a>
           </dd>
           </dl>
         </td>

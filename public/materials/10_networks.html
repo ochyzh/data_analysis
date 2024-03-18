@@ -38,13 +38,39 @@ class: center, middle, inverse, title-slide
  4. An application: modeling contagion
 
 ---
+
 ## Would You Win $1,000,000?
 
 Suppose you are playing the following game:
 
-If you can get all your friends to meet you at the entrance to the ROM in exactly 1 hour, you will win $1,000,000. The catch is that you can only contact one friend, and not all your friends know each other. The picture below is a visualization of your friendship network. Which friend would you call and why?
+If you can get all your friends to meet you at the entrance to the ROM in exactly 1 hour, you will win $1,000,000. The catch is that you can only contact one friend, and not all your friends know each other. Which friend would you call and why?
 
-&lt;img src="10_networks_files/figure-html/unnamed-chunk-1-1.png" width="400px" style="display: block; margin: auto;" /&gt;
+---
+
+| Sender | Receiver |
+|----------|----------|
+| 1    | 2, 3   |
+| 2    |1, 3, 4, 5   |
+| 3    | 1, 2, 4, 5  |
+| 4    |2, 3, 5, 7  |
+| 5    | 2, 3, 4, 6, 7   |
+|6     |5, 7, 8   |
+|  7    | 4, 5, 6   |
+| 8    |6, 9, 12   |
+|9    | 8, 10   |
+| 10   |9  |
+| 11   | 12  |
+| 12   | 8, 11, 13, 14, 15, 16  |
+| 13   | 12 |
+| 14   | 12 |
+| 15   | 12 |
+| 16   | 12 |
+
+---
+## Visualization of the Friends Network
+
+
+&lt;img src="10_networks_files/figure-html/unnamed-chunk-1-1.png" width="600px" style="display: block; margin: auto;" /&gt;
  
 
 
@@ -55,6 +81,14 @@ If you can get all your friends to meet you at the entrance to the ROM in exactl
 - What criterion helps spread the message in the fewest possible steps?
 
 - What are social science applications of this game?
+
+---
+
+## Why Do We Need Network Analysis?
+Suppose you walked into a dining room that hosts a luncheon at a conference you are currently attending. What table would you sit at?
+
+&lt;img src="images/seating_chart.jpg" width="400px" style="display: block; margin: auto;" /&gt;
+
 
 ---
 class: inverse, middle, center
@@ -192,7 +226,7 @@ Network data are often stored in the form of *adjacency matrices* whose `\(ij^{t
 
 Who looks central? 
 
-&lt;img src="10_networks_files/figure-html/unnamed-chunk-9-1.png" width="500px" style="display: block; margin: auto;" /&gt;
+&lt;img src="10_networks_files/figure-html/unnamed-chunk-10-1.png" width="500px" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Network Measures: Degree Centrality
@@ -288,7 +322,11 @@ Let `\(A_{ij}\)` represent the adjacency matrix associated with a network of int
 ```
 ]
 
+---
 
+## Matrix Multiplication Refresher
+
+&lt;img src="images/matrix_mult.jpg" width="800px" style="display: block; margin: auto;" /&gt;
 
 ---
 class: inverse, middle, center
@@ -338,7 +376,7 @@ ggraph&lt;-graph_from_adjacency_matrix(coleman[1,,], mode="undirected", diag=FAL
 plot(ggraph, vertex.color="black", vertex.size=5, vertex.label=NA)
 ```
 
-&lt;img src="10_networks_files/figure-html/unnamed-chunk-14-1.png" width="500px" style="display: block; margin: auto;" /&gt;
+&lt;img src="10_networks_files/figure-html/unnamed-chunk-16-1.png" width="500px" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Calculate Degree Centrality for Each Node
@@ -373,7 +411,7 @@ V(ggraph)$color &lt;- ifelse(V(ggraph)$name == 21, "red", "grey")
 plot(ggraph)
 ```
 
-&lt;img src="10_networks_files/figure-html/unnamed-chunk-16-1.png" width="400px" style="display: block; margin: auto;" /&gt;
+&lt;img src="10_networks_files/figure-html/unnamed-chunk-18-1.png" width="400px" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -385,7 +423,7 @@ neighbors(ggraph,21)
 ```
 
 ```
-## + 12/73 vertices, named, from d4ccc23:
+## + 12/73 vertices, named, from 1a6ab0a:
 ##  [1] 1  2  9  12 13 14 20 22 38 51 54 55
 ```
 
@@ -395,7 +433,7 @@ V(ggraph)$color[V(ggraph)$name == 21]&lt;- "red"
 plot(ggraph)
 ```
 
-&lt;img src="10_networks_files/figure-html/unnamed-chunk-17-1.png" width="300px" style="display: block; margin: auto;" /&gt;
+&lt;img src="10_networks_files/figure-html/unnamed-chunk-19-1.png" width="300px" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -431,7 +469,7 @@ V(ggraph)$color[V(ggraph)$name == 21]&lt;- "red"
 plot(ggraph, vertex.label=NA)
 ```
 
-&lt;img src="10_networks_files/figure-html/unnamed-chunk-19-1.png" width="600px" style="display: block; margin: auto;" /&gt;
+&lt;img src="10_networks_files/figure-html/unnamed-chunk-21-1.png" width="600px" style="display: block; margin: auto;" /&gt;
 
 
 
@@ -445,7 +483,7 @@ Below if the code to create the hypothetical friendship network used in the open
 
 
 ```r
-el &lt;- matrix( c("1", "2", "1", "3","2","3","3","5","2","4","2","5","3","4","4","5","4","7","6","5","5","7","6","7","6","8",   "8","9","9","10", "8","12", "11","12",  "12","13","12","14","12","15","12","16"), nc = 2, byrow = TRUE)
+el &lt;- matrix( c("1", "2", "1", "3","2","3","3","5","2","4","2","5","3","4","4","5","4","7","6","5","5","7","6","7","6","8", "8","9","9","10", "8","12", "11","12",  "12","13","12","14","12","15","12","16"), nc = 2, byrow = TRUE)
 g&lt;-graph_from_edgelist(el, directed=F)
 ```
 
