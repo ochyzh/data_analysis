@@ -131,7 +131,7 @@ All the class materials will be posted/updated here.
          Analysis </td>
         <td>
           <dl>
-          <dd><a href="../materials/11_maps.html" target=_blank> spatial analysis, maps </a>
+          <dd><a href="../materials/11_maps.html" target=_blank> spatial analysis, maps </a> |<a href="../materials/data/statereg.csv" target=_blank> regions data </a> |<a href="../materials/data/animal.csv" target=_blank> animal data </a>
           </dd>
           </dl>
         </td>

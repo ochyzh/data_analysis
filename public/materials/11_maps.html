@@ -65,31 +65,156 @@ Source: van Weezel S. "On climate and conflict: Precipitation decline and commun
 
 Source: Chyzh, Olga V. and R. Urbatsch. 2021. "Bean Counters: The Effect of Soy Tariffs on Change in Republican Vote Share Between the 2016 and 2018 Elections."*Journal of Politics* 83 (1): 415--419.
   
+---
+## What You Need
+
+- Latitude/longitude points for all map boundaries
+
+- Need to know to which boundary/state lat/long points belong
+
+- Need to know the order to connect points within each group
+
 
 ---
-## Necessary `R` Packages
+## Making Maps
+
+
+```r
+library(tidyverse)
+library(mapproj)
+library(maps)
+library(mapdata)
+states &lt;- map_data("state")
+
+head(states)
+```
+
+```
+##        long      lat group order  region subregion
+## 1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;
+## 2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;
+## 3 -87.52503 30.37249     1     3 alabama      &lt;NA&gt;
+## 4 -87.53076 30.33239     1     4 alabama      &lt;NA&gt;
+## 5 -87.57087 30.32665     1     5 alabama      &lt;NA&gt;
+## 6 -87.58806 30.32665     1     6 alabama      &lt;NA&gt;
+```
+
+
+---
+## A Basin (Rather Hideous) Map
+
 
 ```r
 library(ggplot2)
-library(tidyverse)
-library(magrittr)
-library(maps)
-library(mapdata)
-library(mapproj)
-
-
-library(devtools)
-install_github("ochyzh/classdata")
-library(classdata)
-install_github("mccormackandrew/mapcan", build_vignettes = TRUE)
-library(mapcan)
+ggplot() +  geom_path(data=states, aes(x=long, y=lat, group=group),color="black", size=.5)
 ```
 
+&lt;img src="11_maps_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
 ---
-## Map Data
+## A Bit Nicer of a Map
 
 
 ```r
+#Set theme options:
+theme_set(theme_grey() + theme(axis.text=element_blank(),
+                               axis.ticks=element_blank(),
+                               axis.title.x=element_blank(),
+                               axis.title.y=element_blank(),
+                               panel.grid.major = element_blank(),
+                               panel.grid.minor = element_blank(),
+                               panel.border = element_blank(),
+                               panel.background = element_blank(),
+                               legend.position="none"))
+ggplot() +  geom_path(data=states, aes(x=long, y=lat, group=group),color="black", size=.5)+ coord_map()
+```
+
+---
+## Polygon instead of Path
+
+
+```r
+ggplot() +  geom_polygon(data=states, aes(x=long, y=lat, group=group),color="black", size=.5)+ coord_map()
+```
+
+&lt;img src="11_maps_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Incorporate Information About States
+
+- Add other geographic information (e.g., counties) by adding geometric layers to the plot
+
+- Add non-geographic information by altering the fill color for each state 
+
+    - Use geom = "polygon" to treat states as solid shapes to add color
+    
+    - Incorporate numeric information using color shade or intensity
+    
+    - Incorporate categorical informaion using color hue
+    
+---
+## Categorical Information Using Hue
+
+If a categorical variable is assigned as the fill color then ggplot will assign different hues for each category. 
+
+Let’s load in a state regions dataset:
+
+
+```r
+statereg&lt;- read.csv("./data/statereg.csv")
+
+head(statereg)
+```
+
+```
+##        State StateGroups
+## 1 california        West
+## 2     nevada        West
+## 3     oregon        West
+## 4 washington        West
+## 5      idaho        West
+## 6    montana        West
+```
+
+---
+## Join the Data
+
+
+```r
+states.class.map &lt;- left_join(states, statereg, by = c("region" = "State"))
+head(states.class.map)
+```
+
+```
+##        long      lat group order  region subregion StateGroups
+## 1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;       South
+## 2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;       South
+## 3 -87.52503 30.37249     1     3 alabama      &lt;NA&gt;       South
+## 4 -87.53076 30.33239     1     4 alabama      &lt;NA&gt;       South
+## 5 -87.57087 30.32665     1     5 alabama      &lt;NA&gt;       South
+## 6 -87.58806 30.32665     1     6 alabama      &lt;NA&gt;       South
+```
+
+---
+## Plot the Regions
+
+
+```r
+ggplot() +  geom_polygon(data=states.class.map, aes(x=long, y=lat, group=region, fill = StateGroups), colour = I("black"))+ coord_map()+theme(legend.position="bottom")
+```
+
+&lt;img src="11_maps_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Map of Canada
+
+
+```r
+library(devtools)
+install_github("mccormackandrew/mapcan", build_vignettes = TRUE)
+library(mapcan)
 canada_map&lt;-mapcan(boundaries = "province", type="standard",territories=TRUE)
 head(canada_map)
 ```
@@ -134,143 +259,15 @@ ggplot(canada_map, aes(long, lat, group = group)) +
 ---
 
 ## Map of Canada
-&lt;img src="11_maps_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
-
----
-
-## Map of the US
-
-
-```r
-us_counties&lt;-map_data("maps::county")
-ggplot(us_counties, aes(long, lat, group = group)) +
-  geom_polygon(color="black", fill="white") 
-
-us_states&lt;-map_data("state")
-ggplot(us_counties, aes(long, lat, group = group)) +
-  geom_polygon(color="grey", fill="white") +  geom_path(data=us_states, aes(long, lat, group = group),color="black", size=1)+ coord_map("albers",lat0=39, lat1=45)
-```
-
----
-
-## Map of the US
-&lt;img src="11_maps_files/figure-html/unnamed-chunk-8-1.png" width="600px" style="display: block; margin: auto;" /&gt;
-
----
-
-## Map of the US
-&lt;img src="11_maps_files/figure-html/unnamed-chunk-9-1.png" width="600px" style="display: block; margin: auto;" /&gt;
-
----
-## Your Turn
-
-1. Check out the help file for the `map_data` function to find out how to make a map of the world.
-
-2. Can you figure out how to remove Antarctica from the map?
-
-&lt;img src="11_maps_files/figure-html/unnamed-chunk-10-1.png" width="400px" style="display: block; margin: auto;" /&gt;
-
----
-
-
-## Choropleth Maps
-
-- Choropleth maps are thematic maps: areas are shaded by the values of a variable
-
-- Must join map data with content data.
-
-- Example: a map of US counties that shows the number of Covid-19 cases. 
-   
----
-
-## Join Data on Covid and Map
+&lt;img src="11_maps_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
 
 
 
-```
-## # A tibble: 6 × 16
-##    FIPS state state_name county    month clint…¹ trump…² tot_v…³ trump…⁴ medin…⁵
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-## 1  1001 AL    Alabama    autauga …     4    5908   18110   24661   0.495   55317
-## 2  1001 AL    Alabama    autauga …     5    5908   18110   24661   0.495   55317
-## 3  1001 AL    Alabama    autauga …     6    5908   18110   24661   0.495   55317
-## 4  1001 AL    Alabama    autauga …     7    5908   18110   24661   0.495   55317
-## 5  1001 AL    Alabama    autauga …     8    5908   18110   24661   0.495   55317
-## 6  1001 AL    Alabama    autauga …     9    5908   18110   24661   0.495   55317
-## # … with 6 more variables: urb2010 &lt;dbl&gt;, population &lt;dbl&gt;, confirmed &lt;dbl&gt;,
-## #   new_confirmed &lt;dbl&gt;, deaths &lt;dbl&gt;, new_deaths &lt;dbl&gt;, and abbreviated
-## #   variable names ¹​clinton2016, ²​trump2016, ³​tot_votes2016, ⁴​trumpmarg,
-## #   ⁵​medinc1317
-```
-
-
-```
-##        long      lat group order  region subregion
-## 1 -86.50517 32.34920     1     1 alabama   autauga
-## 2 -86.53382 32.35493     1     2 alabama   autauga
-## 3 -86.54527 32.36639     1     3 alabama   autauga
-## 4 -86.55673 32.37785     1     4 alabama   autauga
-## 5 -86.57966 32.38357     1     5 alabama   autauga
-## 6 -86.59111 32.37785     1     6 alabama   autauga
-```
-
----
-## Prepare the Datasets for Joining
-
-- Will be joining by *state name* and *county name*
-
-- Must make sure that these are formatted the same in both datasets, e.g. capitalization, the word "county"
-
-- Will introduce a new variable `state_name` that is all lower case
-
-- Can see mismatching cases using `anti_join`
-
-- Also, since a map can only show one temporal period, need to aggregate the `covid` data to the county level (get rid of the temporal dimension)
 
 
 ---
-## Prepare the Datasets for Joining
 
 
-```r
-library(stringr)
-data("covid") #from the classdata package
-covid_data &lt;-covid %&gt;% filter(month==10) %&gt;% 
-  select(-new_confirmed, -new_deaths) %&gt;% 
-  mutate(state_name=tolower(state_name), county=str_replace(county, "county",""), county=trimws(county)) 
-
-nomatch1 &lt;- covid_data %&gt;%
-  anti_join(us_counties, by=c("state_name"="region", "county"="subregion"))
-unique(cbind(nomatch1$state_name,nomatch1$county))
-
-
-nomatch2 &lt;- us_counties %&gt;%
-  anti_join(covid_data, by=c("region"="state_name", "subregion"="county"))
-unique(cbind(nomatch2$region,nomatch2$subregion))
-```
-
----
-## Join the Data and Make a Map
-
-
-```r
-library(viridis)
-us_counties %&gt;% left_join(covid_data, by=c("region"="state_name", "subregion"="county")) %&gt;%
-ggplot(aes(long, lat, group = group, fill=log10(confirmed/population))) +
-  geom_polygon(color="black") + scale_fill_viridis(na.value="white")+ coord_map("albers",lat0=39, lat1=45)
-```
-
-&lt;img src="11_maps_files/figure-html/unnamed-chunk-14-1.png" width="50%" style="display: block; margin: auto;" /&gt;
-
----
-
-## Your Turn
-
-Correct as many "gray" counties as you can. Feel free to consult the [`stringr` cheatsheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf)
-
-
-&lt;img src="11_maps_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
----
 
 ## Canada Election Results
 
@@ -294,7 +291,37 @@ canada_ridings %&gt;% left_join(electdata, by="riding_code") %&gt;%
 ---
 ## Canada Election Results
 
-&lt;img src="11_maps_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="11_maps_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Your Turn
+
+1. Check out the help file for the `map_data` function to find out how to make a map of the world.
+
+2. Can you figure out how to remove Antarctica from the map?
+
+3. Use the GDP data you scraped as part of our web-scraping class to shade countries based on their GDP.
+
+&lt;img src="11_maps_files/figure-html/unnamed-chunk-15-1.png" width="400px" style="display: block; margin: auto;" /&gt;
+
+---
+## Your Turn (Advanced)
+
+1. Read in the animal.csv data:
+
+
+```r
+animal &lt;- read.csv("./data/animal.csv")
+```
+
+2. Plot the location of animal sightings on a map of the region
+3. On this plot, try to color points by class of animal and/or status of animal
+4. **Advanced**: Could we indicate time somehow?
+
+
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

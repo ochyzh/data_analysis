@@ -69,29 +69,114 @@ knitr::include_graphics("./images/elections.png")
 
 Source: Chyzh, Olga V. and R. Urbatsch. 2021. "Bean Counters: The Effect of Soy Tariffs on Change in Republican Vote Share Between the 2016 and 2018 Elections."*Journal of Politics* 83 (1): 415--419.
   
+---
+## What You Need
+
+- Latitude/longitude points for all map boundaries
+
+- Need to know to which boundary/state lat/long points belong
+
+- Need to know the order to connect points within each group
+
 
 ---
-## Necessary `R` Packages
-```{r, message=F}
-library(ggplot2)
+## Making Maps
+
+```{r}
 library(tidyverse)
-library(magrittr)
+library(mapproj)
 library(maps)
 library(mapdata)
-library(mapproj)
+states <- map_data("state")
+
+head(states)
+```
 
 
-library(devtools)
-install_github("ochyzh/classdata")
-library(classdata)
-install_github("mccormackandrew/mapcan", build_vignettes = TRUE)
-library(mapcan)
+---
+## A Basin (Rather Hideous) Map
+
+```{r}
+library(ggplot2)
+ggplot() +  geom_path(data=states, aes(x=long, y=lat, group=group),color="black", size=.5)
+
 ```
 
 ---
-## Map Data
+## A Bit Nicer of a Map
+
+```{r, eval=FALSE}
+#Set theme options:
+theme_set(theme_grey() + theme(axis.text=element_blank(),
+                               axis.ticks=element_blank(),
+                               axis.title.x=element_blank(),
+                               axis.title.y=element_blank(),
+                               panel.grid.major = element_blank(),
+                               panel.grid.minor = element_blank(),
+                               panel.border = element_blank(),
+                               panel.background = element_blank(),
+                               legend.position="none"))
+ggplot() +  geom_path(data=states, aes(x=long, y=lat, group=group),color="black", size=.5)+ coord_map()
+```
+
+---
+## Polygon instead of Path
 
 ```{r}
+ggplot() +  geom_polygon(data=states, aes(x=long, y=lat, group=group),color="black", size=.5)+ coord_map()
+```
+
+
+---
+## Incorporate Information About States
+
+- Add other geographic information (e.g., counties) by adding geometric layers to the plot
+
+- Add non-geographic information by altering the fill color for each state 
+
+    - Use geom = "polygon" to treat states as solid shapes to add color
+    
+    - Incorporate numeric information using color shade or intensity
+    
+    - Incorporate categorical informaion using color hue
+    
+---
+## Categorical Information Using Hue
+
+If a categorical variable is assigned as the fill color then ggplot will assign different hues for each category. 
+
+Let’s load in a state regions dataset:
+
+```{r}
+statereg<- read.csv("./data/statereg.csv")
+
+head(statereg)
+
+```
+
+---
+## Join the Data
+
+```{r}
+states.class.map <- left_join(states, statereg, by = c("region" = "State"))
+head(states.class.map)
+```
+
+---
+## Plot the Regions
+
+```{r}
+ggplot() +  geom_polygon(data=states.class.map, aes(x=long, y=lat, group=region, fill = StateGroups), colour = I("black"))+ coord_map()+theme(legend.position="bottom")
+```
+
+
+---
+## Map of Canada
+
+```{r}
+library(devtools)
+install_github("mccormackandrew/mapcan", build_vignettes = TRUE)
+library(mapcan)
 canada_map<-mapcan(boundaries = "province", type="standard",territories=TRUE)
 head(canada_map)
 ```
@@ -133,143 +218,13 @@ ggplot(canada_map, aes(long, lat, group = group)) +
   geom_polygon(color="black", fill="white")
 ```
 
----
-
-## Map of the US
-
-```{r, eval=F}
-us_counties<-map_data("maps::county")
-ggplot(us_counties, aes(long, lat, group = group)) +
-  geom_polygon(color="black", fill="white") 
-
-us_states<-map_data("state")
-ggplot(us_counties, aes(long, lat, group = group)) +
-  geom_polygon(color="grey", fill="white") +  geom_path(data=us_states, aes(long, lat, group = group),color="black", size=1)+ coord_map("albers",lat0=39, lat1=45)
-```
-
----
-
-## Map of the US
-```{r, echo=F, out.width= "600px", fig.align='center'}
-us_counties<-map_data("maps::county")
-ggplot(us_counties, aes(long, lat, group = group)) +
-  geom_polygon(color="black", fill="white") + coord_map("albers",lat0=39, lat1=45)
-```
-
----
-
-## Map of the US
-```{r, echo=F, out.width= "600px", fig.align='center'}
-us_states<-map_data("state")
-ggplot(us_counties, aes(long, lat, group = group)) +
-  geom_polygon(color="black", fill="white") +  geom_path(data=us_states, aes(long, lat, group = group),color="black", size=1)+ coord_map("albers",lat0=39, lat1=45)
-```
-
----
-## Your Turn
-
-1. Check out the help file for the `map_data` function to find out how to make a map of the world.
-
-2. Can you figure out how to remove Antarctica from the map?
-
-```{r, echo=F, out.width= "400px", fig.align='center'}
-world<-map_data("world") %>% filter(region!="Antarctica")
-ggplot(world, aes(long, lat, group = group)) +
-  geom_polygon(color="black", fill="white") 
-```
-
----
 
 
-## Choropleth Maps
-
-- Choropleth maps are thematic maps: areas are shaded by the values of a variable
-
-- Must join map data with content data.
-
-- Example: a map of US counties that shows the number of Covid-19 cases. 
-   
----
-
-## Join Data on Covid and Map
-
-
-```{r, echo=F}
-data("covid") #from the classdata package
-covid %>% arrange(state, county) %>% head()
-```
-
-```{r, echo=F}
-head(us_counties)
-```
-
----
-## Prepare the Datasets for Joining
-
-- Will be joining by *state name* and *county name*
-
-- Must make sure that these are formatted the same in both datasets, e.g. capitalization, the word "county"
-
-- Will introduce a new variable `state_name` that is all lower case
-
-- Can see mismatching cases using `anti_join`
-
-- Also, since a map can only show one temporal period, need to aggregate the `covid` data to the county level (get rid of the temporal dimension)
 
 
 ---
-## Prepare the Datasets for Joining
-
-```{r, echo=T, results=F}
-library(stringr)
-data("covid") #from the classdata package
-covid_data <-covid %>% filter(month==10) %>% 
-  select(-new_confirmed, -new_deaths) %>% 
-  mutate(state_name=tolower(state_name), county=str_replace(county, "county",""), county=trimws(county)) 
-
-nomatch1 <- covid_data %>%
-  anti_join(us_counties, by=c("state_name"="region", "county"="subregion"))
-unique(cbind(nomatch1$state_name,nomatch1$county))
 
 
-nomatch2 <- us_counties %>%
-  anti_join(covid_data, by=c("region"="state_name", "subregion"="county"))
-unique(cbind(nomatch2$region,nomatch2$subregion))
-
-```
-
----
-## Join the Data and Make a Map
-
-```{r, out.width='50%'}
-library(viridis)
-us_counties %>% left_join(covid_data, by=c("region"="state_name", "subregion"="county")) %>%
-ggplot(aes(long, lat, group = group, fill=log10(confirmed/population))) +
-  geom_polygon(color="black") + scale_fill_viridis(na.value="white")+ coord_map("albers",lat0=39, lat1=45)
-```
-
----
-
-## Your Turn
-
-Correct as many "gray" counties as you can. Feel free to consult the [`stringr` cheatsheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf)
-
-
-```{r,echo=F}
-covid_data <-covid %>% filter(month==10) %>% 
-  select(-new_confirmed, -new_deaths) %>% 
-  mutate(state_name=tolower(state_name), 
-         county=str_replace(county, "county",""),
-         county=str_replace(county, "parish",""), 
-         county=str_replace(county, "city",""),
-         county=str_replace(county, "\\.",""),
-         county=trimws(county)) 
-
-us_counties %>% left_join(covid_data, by=c("region"="state_name", "subregion"="county")) %>%
-ggplot(aes(long, lat, group = group, fill=log10(confirmed/population))) +
-  geom_polygon(color="black") + scale_fill_viridis(na.value="white")+ coord_map("albers",lat0=39, lat1=45)
-```
----
 
 ## Canada Election Results
 
@@ -311,3 +266,58 @@ canada_ridings %>% left_join(electdata, by="riding_code") %>%
 
 
 ```
+
+---
+## Your Turn
+
+1. Check out the help file for the `map_data` function to find out how to make a map of the world.
+
+2. Can you figure out how to remove Antarctica from the map?
+
+3. Use the GDP data you scraped as part of our web-scraping class to shade countries based on their GDP.
+
+```{r, echo=F, out.width= "400px", fig.align='center'}
+library(rvest)
+myurl<-"https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)"
+gdp<-read_html(myurl)  |> 
+  html_nodes("table")  |> 
+  html_table(fill=TRUE)  |>  
+  extract2(3) |>  #our table is actually nested within a list element [[]]
+  select(region=1, Year=4, GDP=3) |>  
+  slice(3:214) |>  
+  mutate( Year=str_remove(Year, ".*\\]"), #remove everything before the ]
+          GDP=str_remove(GDP, ".*\\]"),GDP=as.numeric(str_replace_all(GDP,",","")), Year=as.numeric(str_extract_all(Year, "\\d+")),
+          region=ifelse(region=="United States","USA",region),
+          region=ifelse(region=="United Kingdom","UK",region),
+          region=ifelse(region=="DR Congo","Democratic Republic of the Congo",region))
+
+world<-map_data("world")  |>  filter(region!="Antarctica")
+
+world |>  left_join(gdp, by="region") |> 
+ggplot(aes(long, lat, group = group, fill=log(GDP))) +
+  geom_polygon(color="black") 
+```
+
+---
+## Your Turn (Advanced)
+
+1. Read in the animal.csv data:
+
+```{r, eval=FALSE}
+animal <- read.csv("./data/animal.csv")
+```
+
+2. Plot the location of animal sightings on a map of the region
+3. On this plot, try to color points by class of animal and/or status of animal
+4. **Advanced**: Could we indicate time somehow?
+
+
+```{r, echo=F, eval=FALSE}
+ggplot() +
+    geom_path(data = states, aes(x = long, y = lat, group = group)) +   geom_point(data = animal, aes(x = Longitude, y = Latitude)) +   
+    geom_point(aes(x = Longitude, y = Latitude), shape = "x", size = 5, data = animal) + 
+    xlim(c(-91, -80)) + 
+    ylim(c(22, 32)) + coord_map()
+```
+
+
