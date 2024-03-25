@@ -166,7 +166,7 @@ head(states.class.map)
 ## Plot the Regions
 
 ```{r}
-ggplot() +  geom_polygon(data=states.class.map, aes(x=long, y=lat, group=region, fill = StateGroups), colour = I("black"))+ coord_map()+theme(legend.position="bottom")
+ggplot() +  geom_polygon(data=states.class.map, aes(x=long, y=lat, group=group, fill = StateGroups), colour = I("black"))+ coord_map()+theme(legend.position="bottom")
 ```
 
 
@@ -303,19 +303,20 @@ ggplot(aes(long, lat, group = group, fill=log(GDP))) +
 
 1. Read in the animal.csv data:
 
-```{r, eval=FALSE}
-animal <- read.csv("./data/animal.csv")
+```{r, echo=F, eval=T}
+library(lubridate)
+animal <- read.csv("./data/animal.csv") |> mutate(Date=ymd(Date)) 
 ```
 
 2. Plot the location of animal sightings on a map of the region
 3. On this plot, try to color points by class of animal and/or status of animal
-4. **Advanced**: Could we indicate time somehow?
+4. Use color to indicate time.
 
 
-```{r, echo=F, eval=FALSE}
+```{r, echo=F, eval=T}
 ggplot() +
     geom_path(data = states, aes(x = long, y = lat, group = group)) +   geom_point(data = animal, aes(x = Longitude, y = Latitude)) +   
-    geom_point(aes(x = Longitude, y = Latitude), shape = "x", size = 5, data = animal) + 
+    geom_point(aes(x = Longitude, y = Latitude, color=Date), shape = "x", size = 5, data = animal) + 
     xlim(c(-91, -80)) + 
     ylim(c(22, 32)) + coord_map()
 ```
