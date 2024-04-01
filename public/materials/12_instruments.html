@@ -242,19 +242,155 @@ where `\(\beta_0\)`, and `\(\beta_1\)` are population parameters to estimate, an
     
 [1] Regress *Dissent* on *Rainfall*.
 
-`$$Dissent=\delta_0+\delta_1Rain+u,$$`
+`$$Dissent=\delta_0+\delta_1Rain+\nu,$$`
 
 [2] Regress `\(Repression\)` on the fitted values from the first equation:
 
 `$$Repression=\beta_0+\beta_1\widehat{Dissent}+u$$`
+---
+## Assumptions
+
+Suppose our model is:
+
+`$$y=\beta_0+\beta_1x+u,$$`
+where we think that *x* and *u* are correlated, i. e. `\(Cov(x,u)\neq0\)`.
+
+A valid **instrument** for *x* is a variable `\(z\)`, such that:
+
+1. `\(z\)` is uncorrelated with `\(u\)`, or `\(Cov(z,u)=0\)`;
+    
+    - This condition is known as **instrument exogeneity**
+    
+    - I. e., `\(z\)` is only correlated with `\(y\)` because it is correlated with `\(x\)`; `\(z\)` does not have its own partial effect on `\(y\)` after we account for `\(x\)` and other controls. 
+
+2. `\(z\)` is correlated with `\(x\)`, or `\(Cov(x,z)\neq0\)`.
+
+    - This condition is called **instrument relevance**.
+    
+    - We can, and *should*, test this assumption by regressing `\(x\)` on `\(z\)`.
+   
+---
+class: inverse, middle, center
+# Lab
+
+---
+## Example
+
+- Suppose we are interested in the effect of education on income. Why can't we simply estimate this effect using OLS?
+
+- Load the *mroz* data from the *wooldridge* package.
 
 
 
+```r
+library(tidyverse)
+library(wooldridge)
+data(mroz) 
+mydata&lt;-mroz %&gt;% filter(!is.na(lwage))
+summary(m1&lt;-lm(lwage~educ, data=mydata))
+```
+
+```
+## 
+## Call:
+## lm(formula = lwage ~ educ, data = mydata)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -3.10256 -0.31473  0.06434  0.40081  2.10029 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -0.1852     0.1852  -1.000    0.318    
+## educ          0.1086     0.0144   7.545 2.76e-13 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.68 on 426 degrees of freedom
+## Multiple R-squared:  0.1179,	Adjusted R-squared:  0.1158 
+## F-statistic: 56.93 on 1 and 426 DF,  p-value: 2.761e-13
+```
+
+---
+
+## Using Parents' Education as an Instrument
+
+Regress `educ` on `fatheduc` to check the  instrument relevance.
 
 
+```r
+summary(m2&lt;-lm(educ~fatheduc, data=mydata))
+```
+
+```
+## 
+## Call:
+## lm(formula = educ ~ fatheduc, data = mydata)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -8.4704 -1.1231 -0.1231  0.9546  5.9546 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 10.23705    0.27594  37.099   &lt;2e-16 ***
+## fatheduc     0.26944    0.02859   9.426   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.081 on 426 degrees of freedom
+## Multiple R-squared:  0.1726,	Adjusted R-squared:  0.1706 
+## F-statistic: 88.84 on 1 and 426 DF,  p-value: &lt; 2.2e-16
+```
+
+---
+## Implement the Two-Stage Approach
+
+- What do you conclude?
 
 
+```r
+summary(m3&lt;-lm(lwage~m2$fitted.values, data=mydata))
+```
 
+```
+## 
+## Call:
+## lm(formula = lwage ~ m2$fitted.values, data = mydata)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.2126 -0.3763  0.0563  0.4173  2.0604 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)       0.44110    0.46711   0.944    0.346
+## m2$fitted.values  0.05917    0.03680   1.608    0.109
+## 
+## Residual standard error: 0.7219 on 426 degrees of freedom
+## Multiple R-squared:  0.006034,	Adjusted R-squared:  0.003701 
+## F-statistic: 2.586 on 1 and 426 DF,  p-value: 0.1086
+```
+
+---
+
+## Your Turn
+
+- Evaluate the validity of each of the following instruments:
+
+    - Rain as an instrument of election turnout if the DV is Democrats' vote share in a US election;
+    
+    - Rain as an instrument of protests if the DV is government repression;
+    
+    - Mountains as an instrument for governmemt's ability to detect and track rebel groups if the DV is civil war.
+    
+    - IQ as an instrument for education if the DV is wage.
+    
+    - Distance from a four-year college as an instrument for education if the DV is wage.
+    
+    - Sibling's education as an instrument for education if the DV is wage.
+    
+    - Cloud coverage as an instrument for drone strikes if the DV is civilian casualties. 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

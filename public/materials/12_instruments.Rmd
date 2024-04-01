@@ -249,16 +249,89 @@ where $\beta_0$, and $\beta_1$ are population parameters to estimate, and $u$ is
     
 [1] Regress *Dissent* on *Rainfall*.
 
-$$Dissent=\delta_0+\delta_1Rain+u,$$
+$$Dissent=\delta_0+\delta_1Rain+\nu,$$
 
 [2] Regress $Repression$ on the fitted values from the first equation:
 
 $$Repression=\beta_0+\beta_1\widehat{Dissent}+u$$
+---
+## Assumptions
+
+Suppose our model is:
+
+$$y=\beta_0+\beta_1x+u,$$
+where we think that *x* and *u* are correlated, i. e. $Cov(x,u)\neq0$.
+
+A valid **instrument** for *x* is a variable $z$, such that:
+
+1. $z$ is uncorrelated with $u$, or $Cov(z,u)=0$;
+    
+    - This condition is known as **instrument exogeneity**
+    
+    - I. e., $z$ is only correlated with $y$ because it is correlated with $x$; $z$ does not have its own partial effect on $y$ after we account for $x$ and other controls. 
+
+2. $z$ is correlated with $x$, or $Cov(x,z)\neq0$.
+
+    - This condition is called **instrument relevance**.
+    
+    - We can, and *should*, test this assumption by regressing $x$ on $z$.
+   
+---
+class: inverse, middle, center
+# Lab
+
+---
+## Example
+
+- Suppose we are interested in the effect of education on income. Why can't we simply estimate this effect using OLS?
+
+- Load the *mroz* data from the *wooldridge* package.
 
 
+```{r, eval=T}
+library(tidyverse)
+library(wooldridge)
+data(mroz) 
+mydata<-mroz %>% filter(!is.na(lwage))
+summary(m1<-lm(lwage~educ, data=mydata))
 
+```
 
+---
 
+## Using Parents' Education as an Instrument
 
+Regress `educ` on `fatheduc` to check the  instrument relevance.
 
+```{r, eval=T}
+summary(m2<-lm(educ~fatheduc, data=mydata))
+```
 
+---
+## Implement the Two-Stage Approach
+
+- What do you conclude?
+
+```{r}
+summary(m3<-lm(lwage~m2$fitted.values, data=mydata))
+```
+
+---
+
+## Your Turn
+
+- Evaluate the validity of each of the following instruments:
+
+    - Rain as an instrument of election turnout if the DV is Democrats' vote share in a US election;
+    
+    - Rain as an instrument of protests if the DV is government repression;
+    
+    - Mountains as an instrument for governmemt's ability to detect and track rebel groups if the DV is civil war.
+    
+    - IQ as an instrument for education if the DV is wage.
+    
+    - Distance from a four-year college as an instrument for education if the DV is wage.
+    
+    - Sibling's education as an instrument for education if the DV is wage.
+    
+    - Cloud coverage as an instrument for drone strikes if the DV is civilian casualties. 

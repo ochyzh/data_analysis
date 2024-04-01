@@ -315,7 +315,7 @@ animal <- read.csv("./data/animal.csv") |> mutate(Date=ymd(Date))
 
 ```{r, echo=F, eval=T}
 ggplot() +
-    geom_path(data = states, aes(x = long, y = lat, group = group)) +   geom_point(data = animal, aes(x = Longitude, y = Latitude)) +   
+    geom_path(data = states, aes(x = long, y = lat, group = group)) +   
     geom_point(aes(x = Longitude, y = Latitude, color=Date), shape = "x", size = 5, data = animal) + 
     xlim(c(-91, -80)) + 
     ylim(c(22, 32)) + coord_map()
