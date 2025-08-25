@@ -4,7 +4,7 @@ title: Home
 
 <img src="https://simpleicons.org/icons/github.svg" style="max-width:15%;min-width:40px;float:right;" alt="Github repo" />
 
-<h2> POL304 Using Data to Understand Politics and Society</h2>
+<h2> POL332 Using Data to Understand Politics and Society</h2>
 
 ### _Instructor: Olga Chyzh, olga dot chyzh at utoronto dot ca_
 
