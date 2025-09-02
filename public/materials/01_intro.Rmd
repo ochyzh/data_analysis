@@ -1,5 +1,5 @@
 ---
-title: "POL 304: Using Data to Understand Politics and Society"
+title: "POL 332: Using Data to Understand Politics and Society"
 subtitle: Introduction
 author: "Olga Chyzh [www.olgachyzh.com]"
 output:
@@ -82,9 +82,14 @@ library(magrittr)
 ---
 ## Assessments
 
-- Participation, discussion of assigned readings --- 20%
+- Weekly R-script uploads ---10%
+- Participation, discussion of assigned readings --- 10%
 
-- 3 assignments (20%, 20%, 30%) 
+- 3 assignments:
+    - Assignment--- 10%
+    - Research Design--- 20%
+    - Research Paper (15-20 pages)--- 50% 
+
 - Apply the tools learned in class to your own data.
 
 
@@ -93,14 +98,14 @@ library(magrittr)
 ---
 ## Lectures
 
-- Slides, assignments, and all materials are posted on the [course website](www.pol304.netlify.app)
+- Slides, assignments, and all materials are posted on the [course website](www.pol332.netlify.app)
 
 - Start working on the assignments today!
 
 ---
 ## What You Already Know
 
-- Have you taken an Intro to Statistics? 
+- Have you taken POL222 or equivalent? 
 
 - Have you used R before?
  

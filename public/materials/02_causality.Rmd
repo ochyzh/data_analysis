@@ -1,5 +1,5 @@
 ---
-title: "POL 304: Using Data to Understand Politics and Society"
+title: "POL 332: Using Data to Understand Politics and Society"
 subtitle: Intro to Causality
 author: "Olga Chyzh [www.olgachyzh.com]"
 output:
