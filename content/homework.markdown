@@ -24,7 +24,7 @@ title: Homework Assignments
         <td>Oct 10</td>
         <td>
           <dl>
-          <dd><a href="../materials/homework/research_design.docx" target=_blank>Assignment 2</a>
+          <dd><a href="../materials/homework/research_design.pdf" target=_blank>Assignment 2</a>
           </dd>
           </dl>
         </td>
