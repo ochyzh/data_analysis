@@ -34,7 +34,9 @@ library(magrittr)
 
 ## Agenda
 
-- Theory
+- Research Question
+
+- Theory and Hypothesis
 
 - Case selection
 
@@ -43,6 +45,21 @@ library(magrittr)
     - Selecting on the independent variable
 
 - Case selection strategies
+---
+class: inverse, middle, center
+# Research Question
+
+---
+## Research Question
+
+Remember that a research question is general, it does not name specific places or policy areas. Also note that a research question must be open-ended, it is not a yes/no question.
+
+- What are the causes of poverty?
+
+- What is the relationship between indiscriminate attacks and civilian violence?
+
+- Your Turn.
+
 ---
 class: inverse, middle, center
 # Theory
@@ -73,115 +90,62 @@ knitr::include_graphics("images/price_theory.png")
 - Are they true?
 
 - Is this a useful theory?
+---
+## Theory-Building
+
+- Start with something you know.
+
+- Think of a logical explanation.
+
+- Derive a novel prediction (something else that must be true if your theory is true)--that is your hypothesis.
 
 ---
-## Example 1: Absentmindedness
+## Example 1: Grad School Applications
 
-- Your professor has forgotten to bring last week’s homework. They apologize, and you turn to the person next to you and say, “what can you expect
-from absent-minded professors?”
+- The quality of graduate applications decreases as the deadline approaches.
 
-- This is your explanatory model for the professor’s behavior. This is a common--but poor--model. Where is the process or causal
-mechanism? One way to identify process is to ask why are professors absent-minded.
+- Where is the process or causal mechanism? 
 
 ---
-## Example 1: Absentmindedness
+## Example 1: Grad School Applications
 
-*Model 1* (Prioritization): Individuals have a limited amount of time to accomplish their tasks. Tasks have different priorities. Busy people have to prioritize their tasks based on importance. The professor does not consider teaching important, and so they did not bother to go to their office and find the homework papers. 
+*Model 1* (Time Management): Students who delay are less prepared or organized. These students may underestimate the time needed to revise essays, request letters of recommendation, or navigate submission portals. As a result, last-minute applications may suffer from incomplete proofreading, weak coherence, or underdeveloped personal statements—not due to weaker ability, but due to poor execution.
 
-  - *Hypothesis*: Professor is less forgetful at tasks to which they assign higher importance (e.g., graduate classes, research).
+  - *Hypothesis*: Late applicants will also tend to have last-minute recommendation letters.
 
-*Model 2* (Concentration): One becomes a professor by learning to be a good problem solver. Good problem solving involves almost single-minded concentration. So the professor occasionally forgets to do one thing, because they are concentrating on another.
+*Model 2* (Selection Model): Application timing reflects underlying applicant quality: stronger, more confident applicants submit early, while weaker applicants delay. In contrast, weaker applicants may delay in hopes of improving their application, scrambling to raise test scores, secure recommenders, or polish materials they feel are not yet competitive.
 
-  - *Hypothesis*: Professor is less forgetful at tasks they are currently working on and more forgetful when they switch among tasks.
+  - *Hypothesis*: GPA/test scores of early applicants will be higher on average.
 
----
-## Example 2: Student Riots
-
-- An introductory social science class was asked to develop theoretical models that explain protests and riots by college students. Below are 3 answers provided by students. Let’s evaluate them.
-
----
-## Answer 1
-
-- *Model 1*: People resent being told what to do and will express this resentment if they get a chance. College students are told how to run their lives by both their parents and college authorities, and both parents and authorities use various kinds of threats to prevent the expression of resentment; the recent
-change to permissive regulations at colleges gives students a chance to express resentment.
-
-- *Test*: Distribute a questionnaire among college students and ask them if they resent being told what to do. You could also ask parents if their use threats to control behavior.
-
----
-## Evaluation 1
-
-- *Grade*: B
-
-- Though the theory is fine, the tests are poor.
-
-    - We want to test implications, not assumptions.
-
-    - Assumptions are sometimes unreasonable (recall price theory), and not directly observable.
-
-- Questionnaires tell you why people believe (or to claim to believe) something, not whether that belief is true.
-
-- How to improve? Look for natural instances in which these two key variables vary (regulations and protest participation).
-
-    - Colleges vary in terms of strictness and penalties
-    
-    - Variation in student sensitivity to penalties
-
----
-## Answer 2
-
-- *Model 2*: People become unreasonable when they are frustrated. Attempts by college students to make changes are usually ignored or postponed by college administrators.
-
-- *Test*: Examine the record of student riots on many campuses to
-see if the model is true.
-
----
-## Evaluation 2
-
-- *Grade*: B
-
-- Theory is reasonable, but the test is vague.
-
-- How to improve? Add more specification:
-
-    -Less student unrest on campuses where student-led change was successfully carried out.
-
----
-## Answer 3
-
-- *Model 3*: Taxpayers make great sacrifices to provide free or low cost education for students. People only value what they pay
-for. Since tuition and loans are cheap and easily accessible, students are willing to disrupt their education by protesting. 
-
-- *Test*: Compare students that do not have loans and pay directly for their tuition to those that do not pay directly for their education. Can also compare the number of protests at colleges with varying levels of tuition.
-
----
-## Evaluation 3
-
-- *Grade*: A
-
-- This is an excellent theory and test.
 
 ---
 ## Your Turn
 
-- *Observation*: Friends tend to live on the same floor or even be roommates.
+- *Observation*: Civil wars happen in poor countries.
 
 - Propose a model that explains this observation.
 
 - Derive a testable implication.
 
 ---
-## Group Exercise
+## Your Turn
 
-- In groups of 4:
+  - Write down something your know about your research topic.
+  
+  - Think of theoretical model that explains this observation.
+  
+  - What else must be true if your theory is true--that is your hypothesis.
+      
+---
+class: inverse, middle, center
+# Hypothesis
 
-  - Present the theoretical model you developed for your research project
-  
-  - Give each other feedback on:
-  
-      - Does this theory posit a causal mechanism (explains why $X$ causes $Y$ rather than just posits it)?
-      
-      - Is the theory general? (Busy people prioritize their tasks rather than Professor Olga prioritizes her tasks)
-      
+---
+## Hypothesis
+
+A hypothesis is a causal statement of the form: "As X increases[decreases], Y increases[decreases]."
+
+- Your Turn.
 
 ---
 class: inverse, middle, center
@@ -248,18 +212,20 @@ Jay is a recent U of T graduate working in the Ministry of Education. Correlatin
 - How can Jay improve their research design?
 
 ---
-## Groups Exercise
+## Data and Methods
+Describe the data will you use to answer your question. [1-2 sentences to answer each of
+the following] 
 
-- In groups of 4:
+- Where will you obtain the data (e.g., website)?
 
-  - Present the research design you developed for your research project
-  
-      - What is the level of analysis (e.g., county, country)?
+- What is your sample (temporal and geographical scope)? 
+
+- What is the level of analysis (e.g., county, country)?
       
-      - What is the treatment? What is the outcome?
-  
-  - Give each other feedback on:
-  
+- What is the treatment? What is the outcome?
+
+- How will you measure your independent and dependent variable?
+
       - Is the treatment exogenous? That is, can the outcome cause the treatment?
       
       - Are the treatment and control group comparable on all variables other than the treatment?
