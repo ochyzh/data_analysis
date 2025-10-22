@@ -51,14 +51,5 @@ for (stub in mpp_links) {
   mpp_data<-rbind(mpp_data, d)
 }
 
-mpps |> mutate(lastname=str_extract(MPP, "\\d"))
-
-
-
-
-
-
-
-
-
+mpps |> mutate(lastname=str_extract(MPP, "^[^,]+"))
 
