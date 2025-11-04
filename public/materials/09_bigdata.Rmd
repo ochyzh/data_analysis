@@ -1,5 +1,5 @@
 ---
-title: "POL 304: Using Data to Understand Politics and Society"
+title: "POL 332: Using Data to Understand Politics and Society"
 subtitle: Big Data
 author: "Olga Chyzh [www.olgachyzh.com]"
 output:
@@ -16,14 +16,17 @@ editor_options:
 
 ```{r  setup, message=FALSE, warning=FALSE, include=FALSE}
 options(
-  htmltools.dir.version = FALSE, # for blogdown
-  width = 80,
-  tibble.width = 80
+htmltools.dir.version = FALSE, # for blogdown
+width = 80,
+tibble.width = 80
 )
 
 knitr::opts_chunk$set(
-  fig.align = "center",  warning=FALSE, message=FALSE
+fig.align = "center",
+warning = FALSE,
+message = FALSE
 )
+
 
 ```
 
@@ -36,7 +39,7 @@ Time: Symposium on the Dynamics of the Internet and Society.*
 
 - Aylin Caliskan, Joanna J. Bryson, and Arvind Narayanan. 2017. Semantics Derived Automatically from Language Corpora Contain Human-Like Biases. *Science* 356(6334):183--186,
 
-- Jevin D. West. 2010. How to Improve the Use of Metrics: Learn from Game Theory. *Nature* 465(17):870--872.
+- Buchholz, Oliver and Thomas Grote. 2023. Predicting and Explaining with Machine Learning Models: On the Role of Prediction and Explanation in the Social Sciences. *Social Science Information*, 62(4), 721–742.
 
 
 ---
@@ -46,7 +49,7 @@ Time: Symposium on the Dynamics of the Internet and Society.*
 use precisely specified), then the conclusion follows as a logical necessity, based on the reductive application of
 laws to a closed domain of discussion.
 
-   - Example. The Earth is round and revolves around the Sum. Therefore, the Sun rises in the East.
+   - Example. The Earth is round and revolves around the Sun. Therefore, the Sun rises in the East.
 
 - Induction: “bottom-up” reasoning, whereby a conclusion is reached via generalization or extrapolation from initial information. 
 
@@ -59,7 +62,7 @@ laws to a closed domain of discussion.
 
 ## Induction to the Extreme
 
-"This is a world where massive amounts of data and applied mathematics replace every other tool that might be brought to bear. Out with every theory of human behavior. [...] Who knows why people do what they do? The point is they do it, and we can track and measure it with unprecendented fidelity. With enough data, the numbers speak for themselves."
+"This is a world where massive amounts of data and applied mathematics replace every other tool that might be brought to bear. Out with every theory of human behavior. [...] Who knows why people do what they do? The point is they do it, and we can track and measure it with unprecedented fidelity. With enough data, the numbers speak for themselves."
 
                                                          -- Anderson (2008)
 
@@ -145,18 +148,7 @@ knitr::include_graphics("./images/2Dprojection.png")
 knitr::include_graphics("./images/Caliskanetal_Fig1.png")
 ```
 
----
-## Ethical Research
 
-- What is the balance between data transparency and privacy?
-
-- How can we anonymize the data while preserving its usability?
-
-- Should public data be fair game? Under what conditions?
-
-- What is research accountability?
-
-- What is the "new digital divide"?
 ---
 ## Google Flu Tracker
 
@@ -181,15 +173,112 @@ data collection and analysis.
 
 ---
 
-## Lessons from Game Theory
+## Prediction vs. Explanation
 
-- What is the problem described in the article?  What recommendations did it suggest for addressing it?  Does the problem/solutions apply beyond the academe, e. g., venture capitalism, industry, government? 
+| **Dimension** | **Prediction** | **Explanation** |
+|----------------|----------------|-----------------|
+| **Goal** | Forecast \(Y\) accurately | Understand *why* \(Y\) changes |
+| **Evaluation** | Out-of-sample accuracy, error minimization | Causal validity, theoretical coherence |
+| **Data needs** | Large, high-dimensional, often unstructured | Careful measurement, identification strategy |
+| **Output** | Precise forecasts, classifications | Causal mechanisms, theory tests |
+| **Risks** | Black-box models, spurious patterns | Oversimplified models, poor predictive value |
+| **Example** | Predicting election outcomes from tweets | Explaining why people vote |
 
-- How can we apply the strategies proposed in the article to help improve the quality of Big Data research?
+- In social science, which goal matters more? Can we achieve both?
+
+<small>*Source: Buchholz & Grote (2023). “Predicting and Explaining with Machine Learning Models.”* *Social Science Information, 62(4): 721–742.*</small>
+
+???
+
+- Use this to prompt discussion: ask which column most social science aims for.  
+- Note how Big Data and ML push researchers toward “prediction,” while theory traditionally emphasizes “explanation.”  
+- Connect to Lazer et al. (2014) on the perils of over-fitting and Boyd & Crawford (2011) on epistemology.
+
+---
+
+## Example 1: AlphaFold 🧬
+
+**Example:** DeepMind’s *AlphaFold* (AF) — predicting the 3D structure of proteins from amino acid sequences.  
+
+**Why it succeeded:**
+- The task was **well-defined** — the shape of a protein depends directly on its amino acid sequence.
+- There was **lots of high-quality data** — tens of thousands of known protein structures to train on.
+- **Stable background conditions** — biology doesn’t change day-to-day; the rules of protein folding stay the same.
+- A clear **benchmark** existed to check how close predictions were to reality.
+
+**What it shows:**
+- When concepts are **clear**, data are **large and standardized**, and relationships are **stable**,  
+  machine learning can make accurate predictions — even *scientific breakthroughs.*
+
+<small>*Buchholz & Grote (2023). “Predicting and Explaining with Machine Learning Models.”* *Studies in History and Philosophy of Science, 102: 60–69.*</small>
+
+???
+
+- Ask: Why is this easier than predicting social phenomena?
+- Emphasize that in natural science tasks like protein folding, the “ground truth” exists and doesn’t change.
+
+---
+
+## Example 2: the Fragile Families Challenge👶  
+
+**Example:** *Fragile Families Challenge* — 160 research teams tried to **predict children’s life outcomes** (e.g., GPA, income, health) from a huge dataset of 4,000 families and 12,000 variables.
+
+**What happened:**
+- Even with advanced ML models, **predictions were barely better than chance.**
+- **Simple models** (like linear regression) did almost as well as **deep learning.**
+- Human lives are **non-stable systems** — too many unpredictable factors (luck, social context, policy changes).
+- The data, though large, **missed key variables** and **couldn’t capture causal complexity.**
+
+**What it shows:**
+- ML struggles when background conditions aren’t stable and when the world **changes in response to itself.**
+- Social phenomena are **reflexive** — people and systems react to predictions, breaking patterns.
+
+<small>*Buchholz & Grote (2023). “Predicting and Explaining with Machine Learning Models.”* *Studies in History and Philosophy of Science, 102: 60–69.*</small>
+
+???
+
+- Why can’t we predict human life paths like we predict protein shapes?  
+- Note that social systems are “open”: feedback, adaptation, and measurement error all limit predictive power.
+
+---
+
+## Would Machine Learning Succeed?
+
+Consider each of these possible studies.  
+Would ML **succeed**, **struggle**, or **fail** here – and why?
+
+1. **Predict which high school students will finish college**  
+   using demographic data, grades, and attendance records.
+
+2. **Forecast which candidates will win an election**  
+   using social media posts (Twitter, TikTok, Instagram) in the months before voting.
+
+3. **Identify neighborhoods at risk of gentrification**  
+   using satellite images, housing prices, and business opening/closing data.
+
+4. **Estimating individual happiness** from smartphone data (sleep, messages, app use)
+
+???
+
+- Think about:  
+  - Are background conditions **stable or changing**?  
+  - Are key variables **measured well** or mostly missing?  
+  - Is the system **reflexive** (does it react to predictions)?  
 
 
 
+---
+## Ethical Research
 
+- What is the balance between data transparency and privacy?
+
+- How can we anonymize the data while preserving its usability?
+
+- Should public data be fair game? Under what conditions?
+
+- What is research accountability?
+
+- What is the "new digital divide"?
 ---
 
 ## Using Correlations to Specify a Model
@@ -210,7 +299,7 @@ cor(mydata$nkill,mydata$iyear, use="complete.obs")
 ---
 ## Your Turn
 
-- Use the `cor` function to find the top 10 variables correlated with `nkill`. See `?cor` for help.
+- Use the `cor` function to find the top 7 variables correlated with `nkill`. See `?cor` for help.
 
 - Regress `nkill` on the variables you identified (use the `lm` function).
 

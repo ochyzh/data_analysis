@@ -109,7 +109,7 @@ All the class materials will be posted/updated here.
          Data </td>
         <td>
           <dl>
-          <dd><a href="../materials/09_bigdata.html" target=_blank> big data </a>| <a href="../materials/data/GTD_data_small.csv" target=_blank> practice data </a>| <a href="../materials/data/GTD Codebook.pdf" target=_blank> data codebook </a>
+          <dd><a href="../materials/09_bigdata.html" target=_blank> big data </a>| <a href="../materials/data/GTD_data_small.csv" target=_blank> practice data </a>| <a href="../materials/code from class/class9script.R" target=_blank> code from class </a> | <a href="../materials/data/GTD Codebook.pdf" target=_blank> data codebook </a>
           </dd>
           </dl>
         </td>
