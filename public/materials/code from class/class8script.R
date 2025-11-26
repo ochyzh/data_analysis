@@ -19,11 +19,10 @@ mytable<-read_html(myurl) %>%
   html_nodes("table") %>%
   html_table(fill=TRUE)  %>%
   extract2(3) %>% #our table is actually nested within a list element [[]]
-  select(Country=1, Year=4, GDP=3) %>%
+  select(Country=1, GDP=3) %>%
   slice(3:214) %>%
-  mutate( Year=str_remove(Year, ".*\\]"), #remove everything before the ]
-          GDP=str_remove(GDP, ".*\\]"),
-          GDP=parse_number(GDP), Year=parse_number(Year))
+  mutate( GDP=str_remove(GDP, ".*\\]"), #remove everything before the ]
+          GDP=parse_number(GDP))
 
 
 myurl<-"https://www.ola.org/en/members/parliament-43"

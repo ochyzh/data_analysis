@@ -142,7 +142,7 @@ All the class materials will be posted/updated here.
          Variables </td>
         <td>
           <dl>
-          <dd><a href="../materials/12_instruments.html" target=_blank> instruments </a>
+          <dd><a href="../materials/12_instruments.html" target=_blank> instruments </a>|<a href="../materials/code from class/class12script.R" target=_blank> code from class </a>
           </dd>
           </dl>
         </td>
