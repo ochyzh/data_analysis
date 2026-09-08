@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>POL 304: Using Data to Understand Politics and Society</title>
+    <title>POL 332: Using Data to Understand Politics and Society</title>
     <meta charset="utf-8" />
     <meta name="author" content="Olga Chyzh [www.olgachyzh.com]" />
-    <script src="libs/header-attrs-2.25/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.30/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
@@ -13,7 +13,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# POL 304: Using Data to Understand Politics and Society
+# POL 332: Using Data to Understand Politics and Society
 ]
 .subtitle[
 ## Lab 1: Intro to R
@@ -31,13 +31,13 @@ class: center, middle, inverse, title-slide
 ## Always Start By...
 
 - Navigating to your working directory 
-&lt;img src="images/change_dir.jpg" width="1100px" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/change_dir.jpg" alt="" width="1100px" style="display: block; margin: auto;" /&gt;
 
 ---
 ## And ...
 
 - Setting your directory
-&lt;img src="images/set_dir.jpg" width="1100px" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/set_dir.jpg" alt="" width="1100px" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Open Data Files
@@ -45,7 +45,7 @@ class: center, middle, inverse, title-slide
 - To open `.csv` files, use `read.csv`
 
 
-```r
+``` r
 rosca&lt;-read.csv('rosca.csv', header=TRUE)
 ```
 
@@ -54,7 +54,7 @@ rosca&lt;-read.csv('rosca.csv', header=TRUE)
 ## Access/Create a New Variable
 
 
-```r
+``` r
 rosca$bg_female
 
 rosca$new_var&lt;- NA
@@ -65,7 +65,7 @@ rosca$new_var&lt;- NA
 Suppose you want to see the values of the `fol2_amtinvest` variable only for women.
 
 
-```r
+``` r
 rosca$fol2_amtinvest[rosca$bg_female==1]
 
 ##Or create a copy of the dataset that only includes women:
@@ -75,7 +75,7 @@ rosca1&lt;- rosca$fol2_amtinvest[rosca$bg_female==1]
 ## Calculate the Mean
 
 
-```r
+``` r
 mean(rosca$fol2_amtinvest, na.rm=TRUE)
 mean(rosca$fol2_amtinvest[rosca$bg_female==1], na.rm=TRUE)
 
@@ -87,7 +87,7 @@ tapply(rosca$fol2_amtinvest, rosca$bg_female,mean, na.rm=TRUE)
 
 
 
-```r
+``` r
 table(rosca$bg_female)
 ```
 
@@ -107,9 +107,9 @@ Create a single variable `treatment` that takes the value `control` for observat
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
