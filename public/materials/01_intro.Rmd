@@ -37,9 +37,7 @@ library(magrittr)
 
 ## About me
 
-- Associate Professor of Political Science, since Fall 2020
-
-- Previously Associate Professor of Political Science and Statistics at Iowa State University (2015-2020).
+- Associate Professor of Political Science
 
 - My research areas are network analysis, spatial statistics, substantive focus on non-state violent actors
 
@@ -77,31 +75,20 @@ library(magrittr)
 
 - About 2:1 split of class between teaching:practice
 
-- After each class, upload your R script to Quercus to get credit.
 
 ---
 ## Assessments
 
-- Weekly R-script uploads ---10%
 - Participation, discussion of assigned readings --- 10%
 
-- 3 assignments:
-    - Assignment--- 10%
-    - Research Design--- 20%
-    - Research Paper (15-20 pages)--- 50% 
-
-
-- Apply the tools learned in class to your own data.
-
-
-- As we go through applications, start thinking of your own examples
+- 2 Exams: in-class, closed books, MC and short answer
 
 ---
 ## Lectures
 
-- Slides, assignments, and all materials are posted on the [course website](www.pol332.netlify.app)
+- Slides and all materials are posted on the [course website](www.pol332.netlify.app)
 
-- Start working on the assignments today!
+- Reading assignments are posted on Quercus
 
 ---
 ## What You Already Know
@@ -117,6 +104,8 @@ library(magrittr)
 - [R](https://www.r-project.org/)
 
 - [RStudio](https://rstudio.com/products/rstudio/download/)
+
+- If familiar, can you Posit Cloud or Google Colab
 
 ---
 ## The RStudio IDE

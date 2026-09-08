@@ -15,7 +15,7 @@ title: Homework Assignments
         <td>Sep 19</td>
         <td>
           <dl>
-          <dd><a href="../materials/homework/assignment1.html" target=_blank>Assignment 1</a> | <a href="../materials/homework/chechen.csv" target=_blank> data </a>
+          <dd><a href="../materials/homework/.assignment1.html" target=_blank>Assignment 1</a> | <a href="../materials/homework/chechen.csv" target=_blank> data </a>
           </dd>
           </dl>
         </td>
@@ -24,7 +24,7 @@ title: Homework Assignments
         <td>Oct 10</td>
         <td>
           <dl>
-          <dd><a href="../materials/homework/research_design.pdf" target=_blank>Assignment 2</a>
+          <dd><a href="../materials/homework/.research_design.pdf" target=_blank>Assignment 2</a>
           </dd>
           </dl>
         </td>
