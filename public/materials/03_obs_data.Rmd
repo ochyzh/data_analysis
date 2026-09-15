@@ -1,5 +1,5 @@
 ---
-title: "POL 304: Using Data to Understand Politics and Society"
+title: "POL 332: Using Data to Understand Politics and Society"
 subtitle: Causality II
 author: "Olga Chyzh [www.olgachyzh.com]"
 output:
@@ -397,7 +397,7 @@ Suppose we would like to study the effect of proximity to a garbage incinerator 
 
 1. Download and open the data on housing prices, `hprice3`.
 
-2. Create a binary variable, `nearinc` that equals to 1 if the house is within 3 miles of the incinerator.
+2. Create a binary variable, `nearinc` that equals to 1 if the house is within 8000 m of the incinerator.
 
 3. How many houses are there in the data in each year?
 
