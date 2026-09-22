@@ -21,7 +21,13 @@ All the class materials will be posted/updated here.
          to Causality</td>
         <td>
           <dl>
-          <dd><a href="../materials/01_intro.html" target=_blank>course intro & syllabus</a> | <a href="../materials/02_causality.html" target=_blank>intro to causality</a>| <a href="../materials/01_intro_R.html" target=_blank>intro to R</a> | <a href="../materials/data/rosca.csv" target=_blank> practice data</a> | <a href="../materials/problem sets/02_causality_problem_set.pdf" target=_blank> practice problem set</a>|<a href="../materials/code from class/class1script.R" target=_blank> script from class </a>
+          <dd><a href="../materials/01_intro.html" target=_blank>course intro & syllabus</a> |
+          <a href="../materials/02_causality.html" target=_blank>intro to causality</a>|
+          <a href="../materials/01_intro_R.html" target=_blank>intro to R</a> |
+          <a href="../materials/data/rosca.csv" target=_blank> practice data</a> |
+          <a href="../materials/problem sets/02_causality_problem_set.pdf" target=_blank> practice problem set</a>|
+          <a href="../materials/problem sets/02_causality_answer_sheet.pdf" target=_blank> practice problem answer key </a>|
+          <a href="../materials/code from class/class1script.R" target=_blank> script from class </a>
           </dd>
           </dl>
         </td>
