@@ -58,6 +58,19 @@ class: inverse, middle, center
 - Most surveys/polls only interview several hundred people/voters
 
 - Goal: infer what 200 million adults are thinking
+
+---
+## The 1936 Literary Digest Poll
+
+- Parameter: election outcome
+
+- Data: a sample of respondents answering the question of which
+  candidate they support
+
+- Franklin Delano Roosevelt (incumbent; from 1933 to 1945) vs. Alfred Landon (Kansas
+  Governor)
+
+- Recovering from the Great Depression: New Deal
 ---
 
 ## The 1936 Literary Digest Poll
@@ -81,27 +94,27 @@ Gallup's prediction for LD |44
 
 ???
 
-- Parameter: election outcome
-
-- Data: a sample of respondents answering the question of which
-  candidate they support
-
-- FDR (incumbent; from 1933 to 1945) vs. Alfred Landon (Kansas
-  Governor)
-
-- Recovering from the Great Depression: New Deal
-
 - Selection bias: the initial frame -- screened out poor (only 1/4
   households had telephones)
 
 - Gallup used only 3,000 to predict the Literary Digest's
-  prediction in way advance
+  prediction way in advance
 
-- Poor voted for Roosevelt
+- The poor voted for Roosevelt
 
 - Literary Digest went bankrupt afterward
 
 - But, Gallup was also a bit off
+
+---
+## The 1948 Election
+
+- Harry Truman (incumbent; vice president of FDR who died in the
+  office), Thomas Dewey (NY Governor)
+
+- World War II ending, the Cold War starting
+
+- Everyone thought Truman was going to lose
 
 ---
 ## The 1948 Election

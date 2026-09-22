@@ -1,6 +1,9 @@
+#Open the data
 vig<-read.csv("vignettes.csv")
+
 vig_chi <- subset(vig, china == 1)
 vig_mex <- subset(vig, china == 0)
+
 # China
 chi_table <- prop.table(table(vig_chi$self))
 barplot(chi_table, main = "China")
@@ -21,11 +24,18 @@ mean(vig_chi$less_than_moses)
 vig_mex$less_than_moses<-ifelse(vig_mex$self<vig_mex$moses,1,0)
 mean(vig_mex$less_than_moses)
 
+#Restrict the data to survey respondents who ranked these three vignettes in the expected order (i.e., Alison ≥ Jane ≥ Moses).
+
 vig_chi<-subset(vig_chi, vig_chi$alison>=vig_chi$jane &
                   vig_chi$jane>=vig_chi$moses )
 
 vig_mex<-subset(vig_mex, vig_mex$alison>=vig_mex$jane &
                   vig_mex$jane>=vig_mex$moses )
+
+#Now create a variable that represents how respondents rank themselves relative to each vignette.
+#This variable should be equal to 1 if a respondent ranks themselves lower than Moses,
+# 2 if ranked the same as Moses or higher than Moses but lower than Jane,
+# 3 if ranked the same as Jane or higher than Jane but lower than Alison, and 4 if ranked as high as Alison or higher.
 
 vig_chi$rank<- NA
 vig_chi$rank<-ifelse(vig_chi$self<vig_chi$moses,1,
@@ -35,8 +45,3 @@ vig_chi$rank<-ifelse(vig_chi$self==vig_chi$jane | (vig_chi$self> vig_chi$jane & 
 vig_chi$rank<-ifelse(vig_chi$self==vig_chi$alison |  vig_chi$self>vig_chi$alison, 4,vig_chi$rank)
 chi_table <- prop.table(table(vig_chi$rank))
 barplot(chi_table, main = "China")
-
-
-
-
-
