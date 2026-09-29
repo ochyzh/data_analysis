@@ -327,6 +327,32 @@ knitr::include_graphics("./images/multivariate_reg_plane.png")
 ---
 class: inverse, middle, center
 # Lab
+
+
+---
+
+## The Social Pressure Experiment 
+
+- August 2006 Primary Statewide Election in Michigan<sup>1</sup>
+
+- Send postcards with different (randomly assigned) messages
+
+1. no message (control group)
+
+2. civic duty message
+
+3. “you are being studied” message (Hawthorne effect)
+
+4. neighborhood social pressure message
+
+.footnote[
+<sup>1</sup> Gerber, Alan S., Donald P. Green, and Christopher W. Larimer. 2008. "Social pressure and voter turnout: Evidence from a large-scale field experiment." *American Political Science Review* 102 (1): 33--48.
+]
+
+---
+```{r, echo=F, out.width= "1000px",fig.align="center"}
+knitr::include_graphics("images/naming-shaming.png")
+```
 ---
 ## The Social Pressure Experiment
 
