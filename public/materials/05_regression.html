@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>POL 304: Using Data to Understand Politics and Society</title>
+    <title>POL 332: Using Data to Understand Politics and Society</title>
     <meta charset="utf-8" />
     <meta name="author" content="Olga Chyzh [www.olgachyzh.com]" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -13,7 +13,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# POL 304: Using Data to Understand Politics and Society
+# POL 332: Using Data to Understand Politics and Society
 ]
 .subtitle[
 ## Linear Regression
@@ -39,7 +39,7 @@ class: center, middle, inverse, title-slide
 ---
 
 ## Which Person is the More Competent?
-&lt;img src="./images/face.png" width="1200px" style="display: block; margin: auto;" /&gt;
+&lt;img src="./images/face.png" alt="" width="1200px" style="display: block; margin: auto;" /&gt;
 
 - 2004 Wisconsin Senate Race
 
@@ -51,12 +51,12 @@ class: center, middle, inverse, title-slide
 ---
 ## Facial Competence and Vote Share
 
-&lt;img src="05_regression_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="05_regression_files/figure-html/unnamed-chunk-2-1.png" alt="" style="display: block; margin: auto;" /&gt;
 ---
 
 ## Best Fit Line
 
-&lt;img src="05_regression_files/figure-html/unnamed-chunk-3-1.png" width="500px" style="display: block; margin: auto;" /&gt;
+&lt;img src="05_regression_files/figure-html/unnamed-chunk-3-1.png" alt="" width="500px" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -100,7 +100,7 @@ class: center, middle, inverse, title-slide
 ---
 ## Facial Competence and Vote Share
 
-&lt;img src="05_regression_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="05_regression_files/figure-html/unnamed-chunk-4-1.png" alt="" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Women as Policy Makers
@@ -125,31 +125,21 @@ class: center, middle, inverse, title-slide
 
 ---
 
-&lt;img src="./images/women_data.png" width="1200px" style="display: block; margin: auto;" /&gt;
+&lt;img src="./images/women_data.png" alt="" width="1200px" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Does the reservation policy increase female politicians?
 
 Proportions of women in reserved/non-reserved GP:
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; Reserved &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Not Reserved &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.075 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+| Reserved| Not Reserved|
+|--------:|------------:|
+|        1|        0.075|
 ---
 ## Does it change the policy outcomes?
 
 
-```r
+``` r
 ## drinking-water facilities
 mean(women$water[women$reserved == 1]) -
     mean(women$water[women$reserved == 0])
@@ -159,7 +149,7 @@ mean(women$water[women$reserved == 1]) -
 ## [1] 9.252423
 ```
 
-```r
+``` r
 ## irrigation facilities
 mean(women$irrigation[women$reserved == 1]) -
     mean(women$irrigation[women$reserved == 0])
@@ -176,7 +166,7 @@ mean(women$irrigation[women$reserved == 1]) -
 coefficient `\(\rightsquigarrow\)` this is not always the case
 
 
-```r
+``` r
 mean(women$water[women$reserved == 1]) -
     mean(women$water[women$reserved == 0])
 ```
@@ -185,7 +175,7 @@ mean(women$water[women$reserved == 1]) -
 ## [1] 9.252423
 ```
 
-```r
+``` r
 lm(water ~ reserved, data = women)
 ```
 
@@ -254,7 +244,7 @@ where `\(Y_i\)` is the dependent variable, `\(X_i\)` and `\(Z_i\)` are independe
 
 - Example of three dimensional space:
 
-&lt;img src="./images/multivariate_reg_plane.png" width="500px" style="display: block; margin: auto;" /&gt;
+&lt;img src="./images/multivariate_reg_plane.png" alt="" width="500px" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Multiple Regression
@@ -277,7 +267,7 @@ class: inverse, middle, center
 - Randomization of Treatments Enables Causal Interpretation
 
 
-```r
+``` r
 social &lt;- read.csv("data/social.csv")
 social$messages&lt;-as.factor(social$messages)
 levels(social$messages) # base level is `Civic'
@@ -287,7 +277,7 @@ levels(social$messages) # base level is `Civic'
 ## [1] "Civic Duty" "Control"    "Hawthorne"  "Neighbors"
 ```
 
-```r
+``` r
 fit &lt;- lm(primary2008 ~ messages, data = social)
 round(coef(fit),3)
 ```
@@ -305,7 +295,7 @@ Let's make *Control* the baseline category
 - Create a binary indicator variable for each of the 4 categories
 
 
-```r
+``` r
 social$control&lt;-as.numeric(social$messages=="Control")
 social$civic&lt;-as.numeric(social$messages=="Civic Duty")
 social$hawthorne&lt;-as.numeric(social$messages=="Hawthorne")
@@ -325,7 +315,7 @@ round(coef(fit1),3)
 - The predicted values give the average outcome under each condition
 
 
-```r
+``` r
 predict(fit, newdata =  data.frame(messages = 
                                      unique(social$messages)))
 ```
@@ -335,7 +325,7 @@ predict(fit, newdata =  data.frame(messages =
 ## 0.3145377 0.3223746 0.2966383 0.3779482
 ```
 
-```r
+``` r
 tapply(social$primary2008, social$messages, mean)
 ```
 
@@ -361,9 +351,9 @@ tapply(social$primary2008, social$messages, mean)
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
