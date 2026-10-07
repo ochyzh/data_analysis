@@ -46,26 +46,15 @@ lm(literate91 ~ pscore, data = dta.below)
 lm(literate91 ~ pscore, data = dta.above)
 
 
-lm(poverty91 ~ pscore, data = dta.below)
-lm(poverty91 ~ pscore, data = dta.above)
-
 library(ggplot2)
 
-ggplot()+geom_point(aes(x=pscore, y=poverty91),
-                    data=subset(data, (data$pscore >= -3) & 
+ggplot()+geom_point(aes(x=pscore, y=literate91),
+                    data=subset(data, (data$pscore >= -3) &
                                   (data$pscore <= 3)))+
-  geom_smooth(aes(x=pscore, y=poverty91), 
+  geom_smooth(aes(x=pscore, y=literate91),
               data=dta.below, method=lm, se=FALSE)+
-  geom_smooth(aes(x=pscore, y=poverty91), 
+  geom_smooth(aes(x=pscore, y=literate91),
               data=dta.above, method=lm, se=FALSE)
 
 
-ggplot()+geom_point(aes(x=pscore, y=poverty80),
-                    data=subset(data, (data$pscore >= -3) & 
-                                  (data$pscore <= 3)))+
-  geom_smooth(aes(x=pscore, y=poverty80), 
-              data=dta.below, method=lm, se=FALSE)+
-  geom_smooth(aes(x=pscore, y=poverty80), 
-              data=dta.above, method=lm, se=FALSE)
-lm(poverty80 ~ pscore, data = dta.below)
-lm(poverty80 ~ pscore, data = dta.above)
+
