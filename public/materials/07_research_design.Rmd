@@ -58,7 +58,37 @@ Remember that a research question is general, it does not name specific places o
 
 - What is the relationship between indiscriminate attacks and civilian violence?
 
-- Your Turn.
+---
+## How to Form a Research Question
+
+- Observe people, institutions, and groups and speculate (model)
+    
+    - why they look the way they do.
+
+- ‘Creative intuition’—personal experience and values.
+
+- Look at conclusion sections of quantitative conflict papers;
+
+- Look at journals that publish relevant research:
+
+    - E.g.,American Journal of Political Science, American PoliticalScience Review, Journal of Politics, International Organization,International Studies Quarterly, Journal of Conflict Resolution,Journal of Peace Research, Political Science Research andMethods, Conflict Management and Peace Science, WorldPolitic, International Interactions, Foreign Policy Analysis
+    
+---
+## How to Identify a Good Research Question
+
+- Increase our collective ability to explain some aspect of the world:
+
+1. Important hypothesis from literature that is not well answered;
+
+2. A widely accepted hypothesis you think is incorrect;
+
+3. Resolve a controversy in the literature;
+
+4. Illuminate an unquestioned assumption;
+
+5. Highlight an understudied topic and argue/demonstrate its importance;
+
+6. Apply a theory or gather evidence from one area and apply to another.
 
 ---
 class: inverse, middle, center
@@ -127,15 +157,7 @@ knitr::include_graphics("images/price_theory.png")
 
 - Derive a testable implication.
 
----
-## Your Turn
 
-  - Write down something your know about your research topic.
-  
-  - Think of theoretical model that explains this observation.
-  
-  - What else must be true if your theory is true--that is your hypothesis.
-      
 ---
 class: inverse, middle, center
 # Hypothesis
@@ -145,7 +167,9 @@ class: inverse, middle, center
 
 A hypothesis is a causal statement of the form: "As X increases[decreases], Y increases[decreases]."
 
-- Your Turn.
+- Democracies are less likely to go to war with each other.
+
+- Resource-rich countries are more likely to be under-developed.
 
 ---
 class: inverse, middle, center
@@ -179,25 +203,229 @@ knitr::include_graphics("images/research_design1.png")
 ```{r, echo=F, out.width= "1000px",fig.align="center"}
 knitr::include_graphics("images/research_design2.png")
 ```
-
-
 ---
-## Example 
-
+## Selection on the Dependent Variable
 ```{r, echo=F, out.width= "1000px",fig.align="center"}
 knitr::include_graphics("images/research_design3.png")
 ```
+---
+## Example 
+
+Example:A political party argues slower roads stifles economic development to justify raising speed limits;
+
+```{r, echo=F, out.width= "600px",fig.align="center"}
+knitr::include_graphics("images/SlowRoads.jpg")
+```
+
+- Why is using contemporary data on road speeds to access economic development a poor research design?
+
+---
+## Selection on the Dependent Variable
+```{r, echo=F, out.width= "1000px",fig.align="center"}
+knitr::include_graphics("images/Geddes_Fig1.png")
+```
+
+- According to Geddes, what problems does selection bias createfor causal inference?
+
+    - Applications: GRE/SAT scores & academic performance,sanction success.
+    
+---
+## Selection on an Independent Variable
+
+- Selection procedure does not predetermine the outcome of ourstudy;
+
+- Selection on independent variable ok;
+
+    - Note: this does not hold if IV correlates with factors associated with DV, e.g., Geddes’s East Asia/economic growth example.True also for control variables or even irrelevant variables
+
+---
+## Selection Due to Data Availability
+```{r, echo=F, out.width= "500px",fig.align="center"}
+knitr::include_graphics("images/airplane.png")
+```
+
+---
+## Selection Due to Data Availability
+
+Information availability—often a form of truncated or censored data;
+
+- Scholar specialization;
+
+- Data lost to non-reporting, secrecy, or time;
+
+- Problematic if correlated with dependent variable.
+
+- Strategic processes result in censored data.
+
+---
+## Case Selection Strategies in Causal Studies
+
+Goals:
+
+1. Representative sample;
+
+2. Useful variation on the dimensions of theoretical interest.
+
+---
+## Case Selection Strategies in Causal Studies
+
+How to avoid selection bias?
+
+- Random sample of target population;
+
+- When is the random selection of cases problematic? 
+
+How to find causal effects?
+
+- Isolate factors of theoretical interest;
 
 ---
 ## Case Selection Strategies
 
-- Most similar cases
 
-- Definition: cases that are similar on all factors except $X$
+- Typical cases;
 
-- Goal: isolate the causal effect of $X$ on $Y$
+- Diverse cases;
 
-- Strategy: hold all else equal, but the key explanatory variable 
+- Extreme cases;
+
+- Deviant cases;
+
+- Influential cases;
+
+- Critical cases;
+
+- Least-likely or “hard” cases;
+
+- Most-similar design;
+
+- Least-similar design;
+
+- Cross-case and over-time design.
+
+---
+## Typical Cases
+
+- Definition: Common of cross-case relationship within population
+
+- Goal: Representative
+
+- Large-N comparison: Along the regression line
+
+- Causality: explore causal mechanisms (confirm or invalidate)
+
+---
+## Diverse Cases
+
+- Definition: Diverse values of X, Y, or X/Y
+
+- Goal: Maximize variance
+
+- Large-N comparison:±1 or 2 standard deviation(s) from mean
+
+- Causality: Confirmatory if focus is X/Y, exploratory if focus on X or Y
+
+---
+## Extreme Cases
+
+- Definition: Extreme value on X or Y
+
+- Goal: Investigate unusual case
+
+- Large-N comparison: Several standard deviations from mean
+
+- Causality: Exploratory
+
+---
+## Deviant Cases
+
+- Definition: Outlier
+
+- Goal: Understand why differs from others
+
+- Large-N comparison: Large residual
+
+- Causality: Refine theory (exploratory)
+
+---
+## Influential Cases
+
+- Definition: Influence overall findings
+
+- Goal: Examine assumptions
+
+- Large-N comparison: leverage of a case, effect if case omitted
+
+- Causality: Double-check causal mechanisms
+
+---
+## Critical Cases
+
+- Definition: Substantively important case
+
+- Goal: Investigate major case
+
+- Large-N comparison: selecting on DV
+
+- Causality: Explore multiple causal paths
+
+---
+## Least-likely or “Hard” Cases
+
+- Definition: Case where conditions are especially difficult
+
+- Goal: Stack deck against theory
+
+- Large-N comparison: Bayesian updating
+
+- Causality: Confirmatory
+
+---
+## Most-similar Design—Across Cases
+
+- Definition: Cases that are similar on all factors except X and/orY
+
+- Goal: Hold all else equal but key explanatory variable
+
+- Large-N comparison: Experiments/matching
+
+- Causality: Hypothesis testing (strong confirmatory)
+
+---
+## Most-similar Design—Within Case
+
+- Definition: Look within-case over time
+
+- Goal: Hold all else equal but key explanatory variable
+
+- Large-N comparison: Time series/intervention analysis
+
+- Causality: Hypothesis testing (strong confirmatory)
+
+- Beware endogeneity, however.
+
+---
+## Least-similar Design
+
+- Definition: Everything varies except for X and Y
+
+- Goal: Rule out alternative explanations
+
+- Large-N comparison: Inverse of matching
+
+- Causality: Eliminate necessary conditions, confirm hypothesis
+
+- Example: Global warming and species’ evolution (larger beaks,limbs, and ears)
+---
+## Cross-case and Over-time Design
+
+- Definition: Treated and untreated cases before and after intervention
+
+- Goal: Leverage temporal and spatial variation
+
+- Large-N comparison: Difference-in-difference
+
+- Causality: Hypothesis testing
 
 ---
 ## Your Turn
@@ -211,25 +439,6 @@ Jay is a recent U of T graduate working in the Ministry of Education. Correlatin
 
 - How can Jay improve their research design?
 
----
-## Data and Methods
-Describe the data will you use to answer your question. [1-2 sentences to answer each of
-the following] 
 
-- Where will you obtain the data (e.g., website)?
-
-- What is your sample (temporal and geographical scope)? 
-
-- What is the level of analysis (e.g., county, country)?
-      
-- What is the treatment? What is the outcome?
-
-- How will you measure your independent and dependent variable?
-
-      - Is the treatment exogenous? That is, can the outcome cause the treatment?
-      
-      - Are the treatment and control group comparable on all variables other than the treatment?
-      
-      - Do you have enough observations to calculate the means of each group?
 
 
